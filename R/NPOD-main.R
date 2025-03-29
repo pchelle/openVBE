@@ -374,7 +374,6 @@ NPODObject <- R6::R6Class(
 
       #Optimize sigma
       sigma <- list()
-      #sigma1 <- list()
       for (ind in seq_len(nrow(ySimList))){
         sig <- 0
         for (sp in seq_len(ncol(ySimList))){
@@ -384,9 +383,7 @@ NPODObject <- R6::R6Class(
             sig  <- sig + (((ySimList[[ind,sp]] - y[[ind]])^2)/ncol(ySimList))
           }
         }
-        #sigma1[[ind]] <- sqrt(sig)
         sigma[[ind]] <- sqrt(sig)
-        sigma[[ind]] <- 0.01 + (0.4*y[[ind]]) + 0.5*min(unlist(y))
       }
 
       # Vectorized probability computation
