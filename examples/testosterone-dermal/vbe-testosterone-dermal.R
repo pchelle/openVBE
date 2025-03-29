@@ -1,6 +1,6 @@
 rm(list=ls())
 graphics.off()
-library(VBEtoolbox3)
+library(openVBE)
 setwd("examples")
 dateTime <- paste0(format(Sys.Date(), "%Y%m%d"), "_", format(Sys.time(), "%H%M%S"))
 subfolder <- "testosterone-dermal"
