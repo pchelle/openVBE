@@ -1,9 +1,9 @@
 rm(list=ls())
 graphics.off()
 library(openVBE)
-setwd("examples")
 dateTime <- paste0(format(Sys.Date(), "%Y%m%d"), "_", format(Sys.time(), "%H%M%S"))
-subfolder <- "bupropion-oral"
+exampleName <- "bupropion-oral"
+subfolder <- file.path("examples",exampleName)
 
 #Data set D1
 pkDataFilePath <- file.path(subfolder, "bupropion_pk_data_reference.csv")
@@ -57,8 +57,8 @@ inferredDistribution <- runDistributionInference(method = "NPOD",
                                                  inferenceParameters = inferenceParameters,
                                                  initialGridSize = NULL,
                                                  numberOfIterations = 10,
-                                                 saveResultsPath = file.path(subfolder,paste0(subfolder,"-npod-results-",dateTime,".rds")),
-                                                 cacheFolder = "cacheFolder")
+                                                 saveResultsPath = file.path(subfolder,paste0(exampleName,"-npod-results-",dateTime,".rds")),
+                                                 cacheFolder = file.path("examples/cacheFolder"))
 
 
 ########>   STEP S3   <########
@@ -86,7 +86,7 @@ refAndTestSimulationsInVirtualPopulation <- simulateVirtualPopulation(referenceS
 
 
 ########>   PLOTTING   <########
-source(file.path(subfolder,"plotting-script-vbe-bupropion.R"), encoding = 'UTF-8')
+source(file.path(subfolder,"plotting-script-vbe-bupropion.R"))
 
 
 ########>   STEP S4   <########

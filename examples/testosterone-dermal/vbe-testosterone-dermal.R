@@ -1,9 +1,9 @@
 rm(list=ls())
 graphics.off()
 library(openVBE)
-setwd("examples")
 dateTime <- paste0(format(Sys.Date(), "%Y%m%d"), "_", format(Sys.time(), "%H%M%S"))
-subfolder <- "testosterone-dermal"
+exampleName <- "testosterone-dermal"
+subfolder <- file.path("examples",exampleName)
 
 #Data set D1
 pkDataFilePath <- file.path(subfolder,"testosterone_pk_data_reference.csv")
@@ -52,8 +52,8 @@ inferredDistribution <- runDistributionInference(method = "NPOD",
                                                  inferenceParameters = inferenceParameters,
                                                  initialGridSize = 40,
                                                  numberOfIterations = 10,
-                                                 saveResultsPath = paste0(subfolder,"-npod-results-",dateTime,".rds"),
-                                                 cacheFolder = "cacheFolder")
+                                                 saveResultsPath = file.path(subfolder,paste0(exampleName,"-npod-results-",dateTime,".rds")),
+                                                 cacheFolder = file.path("examples/cacheFolder"))
 
 
 ########>   STEP 3   <########
@@ -87,7 +87,7 @@ refAndTestSimulationsInVirtualPopulation <- simulateVirtualPopulation(referenceS
 
 
 ########>   PLOTTING   <########
-source(file.path(subfolder,"plotting-script-vbe-testosterone-dermal.R", encoding = 'UTF-8'))
+source(file.path(subfolder,"plotting-script-vbe-testosterone-dermal.R"))
 
 
 ########>   STEP S4   <########

@@ -1,3 +1,7 @@
+plasmaDf <- refAndTestSimulationsInVirtualPopulation
+plasmaDf$conc <- toUnit(quantityOrDimension = ospDimensions$`Concentration (mass)`,
+                        values = plasmaDf$conc,
+                        targetUnit = ospUnits$`Concentration [mass]`$`µg/l`)
 
 mmdf <- NULL
 
