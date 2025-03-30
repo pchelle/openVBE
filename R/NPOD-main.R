@@ -14,6 +14,8 @@ NPODObject <- R6::R6Class(
     theta_0 = NULL,
     pyl = NULL,
     err_log = rep(list(), 5),
+    sigma = list(),
+    useLogNormalLikelihood = FALSE,
     initialize = function(simulationFilePath,
                           optimizationParameterList,
                           outputPath,
@@ -21,6 +23,7 @@ NPODObject <- R6::R6Class(
                           studyPopulationDataFilePath = NULL,
                           cofactorPaths = NULL,
                           initialGridSize = NULL,
+                          useLogNormalLikelihood = NULL,
                           npodRunSettings = NULL) {
       # if there is a populationData check that the individuals in it are the same as in the pkData
       self$npodRunSettings <- npodRunSettings
@@ -31,7 +34,7 @@ NPODObject <- R6::R6Class(
       self$outputPath <- outputPath
 
       self$simulation <- ospsuite::loadSimulation(simulationFilePath)
-      # self$simulation$outputSelections$clear()
+
       addOutputs(
         quantitiesOrPaths = self$outputPath,
         simulation = self$simulation
@@ -53,6 +56,10 @@ NPODObject <- R6::R6Class(
       self$cached_mu <- self$multi_mu
       if (!is.null(self$npodRunSettings$npod_cache)) {
         self$cached_mu <- memoise::memoise(self$multi_mu, cache = self$npodRunSettings$npod_cache)
+      }
+
+      if(!is.null(useLogNormalLikelihood)){
+        self$useLogNormalLikelihood <- useLogNormalLikelihood
       }
 
       self$setGrid(initialGridSize)
@@ -118,7 +125,7 @@ NPODObject <- R6::R6Class(
     },
     parsePopulationData = function(studyPopulationDataFilePath, cofactorPaths = NULL) {
       if (is.null(studyPopulationDataFilePath)) {
-        self$populationData <- NULL # data.frame(IndividualId = sapply(self$pkData$idList,function(x){x}))
+        self$populationData <- NULL
         return()
       }
 
@@ -173,8 +180,8 @@ NPODObject <- R6::R6Class(
         logInc <- self$optimizationParameterList[[parNo]]$logIncrement
 
         if(logInc){
-          log_a <- log(a)
-          log_b <- log(b)
+          log_a <- logSafe(a)
+          log_b <- logSafe(b)
           parameterMatrix[parNo,] <- exp(log_a + uniformMatrix[parNo,]*(log_b - log_a))
         } else{
           parameterMatrix[parNo,] <- a + uniformMatrix[parNo,]*(b-a)
@@ -190,50 +197,58 @@ NPODObject <- R6::R6Class(
       return(npodResults)
     },
     Dopt = function() {
-      print("Entering Dopt")
-
+#browser()
       old_theta <- self$theta_0
       counter <- 1
       F0 <- -10^(30)
       F1 <- 2 * F0
-
+      lam <- rep(1,ncol(old_theta))/ncol(old_theta)
+      P1 <- self$getPSI(theta = old_theta,optimizeSigma = TRUE,lambda = lam)
       options <- neldermead::optimset(MaxFunEvals = 2000000000, TolX = 1e-14, MaxIter = self$npodRunSettings$MaxIter, TolFun = 1e-14)
       objective_function_values <- c() #Initialize a vector to store the objective function values at each iteration
       objective_function_values[counter] <- F0
       objective_function_values[counter + 1] <- F1
+
       while (abs(objective_function_values[counter + 1] - objective_function_values[counter]) > self$npodRunSettings$theta_F) {
 
         print("Starting optimization run:")
-        print("Old theta:")
+        print("theta:")
         print(old_theta)
-        #Calculate the matrix of log likelihoods P1 for the set of support points old_theta
-        P1 <- self$PSI_2(theta = old_theta)
-
-        burke_results_old_theta <- burke(P1)
-        lam1 <- burke_results_old_theta$lambda  #Dual variable obtained from burke optimization with theta = old_theta
+        print("lambda:")
+        print(lam)
+        IPM_results_old_theta <- IPM(P1)
+        lam <- IPM_results_old_theta$lambda  #Dual variable obtained from IPM optimization with theta = old_theta
 
         #CONDENSE - remove low probability support points
         L1 <- 0.00000001
-        L2 <- max(lam1)/1000
-        ind1 <- (lam1 > L1) & (lam1 > L2)  #Find elements of lambda that are greater than the lower bounds L1 and L2
+        L2 <- max(lam)/1000
+        ind1 <- (lam > L1) & (lam > L2)  #Find elements of lambda that are greater than the lower bounds L1 and L2
+        lam <- lam[ind1]
         inb_theta <- old_theta[, ind1, drop = FALSE]  #Select the columns of theta corresponding to values of lambda that fall within the constraints L_lower and L_upper
         print("After Condense 2")
+        print("theta:")
         print(inb_theta)
+        print("lambda:")
+        print(lam)
 
         #Calculate the matrix of log likelihoods P2 for the set of support points inb_theta
-        P2 <- self$PSI_2(theta = inb_theta)
+        P2 <- self$getPSI(theta = inb_theta,optimizeSigma = TRUE,lambda = lam)
 
-        burke_results_inb_theta <- burke(P2)
-        lam2 <- burke_results_inb_theta$lambda  #Dual variable obtain from burke optimization with theta = inb_theta
-        objective_function_values[counter + 2] <- burke_results_inb_theta$fobj # Add new objective value to objective_function_values
+        IPM_results_inb_theta <- IPM(P2)
+        lam <- IPM_results_inb_theta$lambda  #Dual variable obtain from IPM optimization with theta = inb_theta
+        objective_function_values[counter + 2] <- IPM_results_inb_theta$fobj # Add new objective value to objective_function_values
 
         #CONDENSE - remove low probability support points
-        L3 <- max(lam2)/1000
-        ind2 <- lam2 > L3 #Find elements of lambda that are greater than the lower bound L3
-        new_weights <- lam2[ind2] / sum(lam2[ind2])
+        L3 <- max(lam)/1000
+        ind2 <- lam > L3 #Find elements of lambda that are greater than the lower bound L3
+        lam <- lam[ind2]
+        new_weights <- lam/sum(lam)
         new_theta <- inb_theta[, ind2, drop = FALSE]
         print("After Condense 2")
+        print("theta:")
         print(new_theta)
+        print("lambda:")
+        print(lam)
 
         if (abs(objective_function_values[counter + 2] - objective_function_values[counter + 1]) <= self$npodRunSettings$theta_F) {
           print("Stopping: Absolute change in objective function is smaller than theta_F.")
@@ -249,7 +264,7 @@ NPODObject <- R6::R6Class(
 
         K <- length(new_theta[1, ])
 
-        self$pyl <- P2[, ind2, drop = FALSE] %*% new_weights # P2 %*% new_weights
+        self$pyl <- P2[, ind2, drop = FALSE] %*% new_weights
 
         print("Starting fminsearch and prune")
         for (l in 1:K) {
@@ -268,29 +283,26 @@ NPODObject <- R6::R6Class(
           )
 
           print("fminserarch complete")
-          print("prune:")
-
           print("prune...")
           new_theta <- self$prune(theta = new_theta,theta_plus = cand_theta$optbase$xopt)
           print("...complete.")
           print(new_theta)
         }
         print("Completed fminsearch and prune")
-
         old_theta <- new_theta
-
         counter <- counter + 1
         print("Counter: ")
         print(counter)
+        #Calculate the matrix of log likelihoods P1 for the set of support points old_theta
+        P1 <- self$getPSI(theta = old_theta)
       }
-      print("Exiting Dopt")
+
       return(list("count" = counter, "theta" = new_theta, "w" = new_weights, "LogLikelihood" = objective_function_values[length(objective_function_values)], "PSI" = P2, demographicData = self$demographicData))
     },
     prune = function(theta, theta_plus){
       if(is.null(theta_plus)){
         return(theta)
       }
-      print("Entering prune")
       # The `prune` function checks if a candidate support point (`theta_plus`)
       # is sufficiently different from the existing set of support points (`theta`) and within
       # specified bounds (`a`, `b`). If these conditions are met, `theta_plus` is
@@ -324,7 +336,6 @@ NPODObject <- R6::R6Class(
 
       # Boundary checks
       within_bounds <- all(theta_plus_scaled > a & theta_plus_scaled < b)
-      print("Exiting prune")
       # Add theta_plus_scaled if conditions are met
       if (min_dist > self$npodRunSettings$theta_d && within_bounds) {
         print(paste0("Adding new support point: (", paste(theta_plus, collapse=", "), ")"))
@@ -343,18 +354,15 @@ NPODObject <- R6::R6Class(
 
     },
     multi_D = function(theta_parameter) {
-      print("Entering multi_D")
       # multi_D computes a likelihood-based metric (D_comp) by summing the
-      # probabilities from PSI_2, normalized by self$pyl. It starts
-      # with a penalty term (-N), calls PSI_2, and updates D_comp.
+      # probabilities from getPSI, normalized by self$pyl. It starts
+      # with a penalty term (-N), calls getPSI, and updates D_comp.
       N <- length(self$pkData$plasmaConcentrationVectorList) # nsub
       D_comp <- -N
-      D_comp <- D_comp + sum(self$PSI_2(theta = theta_parameter)/self$pyl)
-      print("Exiting multi_D")
+      D_comp <- D_comp + sum(self$getPSI(theta = theta_parameter)/self$pyl)
       return(D_comp)
     },
-    PSI_2 = function(theta, ySimList = NULL, useLog = FALSE) {
-      print("Entering PSI_2")
+    getPSI = function(theta, ySimList = NULL, useLog = self$useLogNormalLikelihood, optimizeSigma = FALSE, lambda = NULL) {
       # mprob is an N x K matrix where each entry [i, l] represents the probability
       # of observing y[[i]] given the model prediction ySimList[[i, l]].
       # A small lower bound (1e-100) is enforced for numerical stability.
@@ -372,29 +380,28 @@ NPODObject <- R6::R6Class(
         })
       }
 
-      #Optimize sigma
-      sigma <- list()
-      for (ind in seq_len(nrow(ySimList))){
-        sig <- 0
-        for (sp in seq_len(ncol(ySimList))){
+      if(optimizeSigma){
+        #Optimize sigma
+        for (ind in seq_len(nrow(ySimList))){
           if(useLog){
-            sig  <- sig + (((log(ySimList[[ind,sp]]) - log(y[[ind]]))^2)/ncol(ySimList))
+            ySimWeighted <- rowSums( sapply(seq_along(lambda),function(n){lambda[n]*logSafe(ySimList[[ind,n]])}) )
+            sigma <- sqrt(sum((logSafe(ySimWeighted) - logSafe(y[[ind]]))^2))
           } else {
-            sig  <- sig + (((ySimList[[ind,sp]] - y[[ind]])^2)/ncol(ySimList))
+            ySimWeighted <- rowSums( sapply(seq_along(lambda),function(n){lambda[n]*ySimList[[ind,n]]}) )
+            sigma <- sqrt(sum((ySimWeighted - y[[ind]])^2))
           }
+          self$sigma[[ind]] <- rep(sigma,length(y[[ind]]))
         }
-        sigma[[ind]] <- sqrt(sig)
       }
 
       # Vectorized probability computation
       t1 <- system.time({
         mprob <- sapply(1:K, function(l) {
           sapply(1:length(y), function(i) {
-            max(1e-100, self$getLikelihood(y = y[[i]] , sigma = sigma[[i]] , ySim = ySimList[[i, l]] , useLog = useLog))
+            max(1e-100, self$getLikelihood(y = y[[i]] , sigma = self$sigma[[i]] , ySim = ySimList[[i, l]] , useLog = useLog))
           })
         })
       })
-      print("Exiting PSI_2")
       return(mprob)
     },
     getLikelihood = function(y, t, theta, sigma, ySim, useLog = FALSE) {
@@ -413,15 +420,15 @@ NPODObject <- R6::R6Class(
 
       if (useLog) {
         # Log-transformed error (ratio error)
-        z <- (log(y) - log(ySim))^2
-        logProb <- -log((sqrt(2 * pi) * sigma * y)) - (z / (2 * (sigma^2)))
-        # Calculate the final probability by exponentiating the log likelihood and summing over all data points
+        z <- (logSafe(y) - logSafe(ySim))^2
+        logProb <- -logSafe((sqrt(2 * pi) * sigma * y)) - (z / (2 * (sigma^2)))
+        # Calculate the final probability by exponentiating the logSafe likelihood and summing over all data points
         prob <- exp(sum(logProb[sigma != 0 & y != 0]))
       } else {
         # Arithmetic error (default case)
         z <- (y - ySim)^2
-        logProb <- -log((sqrt(2 * pi) * sigma)) - (z / (2 * (sigma^2)))
-        # Calculate the final probability by exponentiating the log likelihood and summing over all data points
+        logProb <- -logSafe((sqrt(2 * pi) * sigma)) - (z / (2 * (sigma^2)))
+        # Calculate the final probability by exponentiating the logSafe likelihood and summing over all data points
         prob <- exp(sum(logProb[sigma != 0]))
       }
 
@@ -429,10 +436,8 @@ NPODObject <- R6::R6Class(
       return(prob)
     },
     multi_mu = function(theta) {
-
       timePointsList <- self$pkData$timeVectorList
 
-      print("Entering Multi Mu")
       n_ind <- length(timePointsList)
 
       inferenceParameterPaths <- sapply(self$optimizationParameterList, function(x) {
@@ -469,9 +474,7 @@ NPODObject <- R6::R6Class(
       population <- loadPopulation("population.csv")
       file.remove("population.csv")
 
-      print("Simulating...")
       res <- runSimulation(simulation = self$simulation, population = population)
-      print("...complete.")
       resData <- getOutputValues(res, quantitiesOrPaths = self$outputPath)$data
 
       for (ind in unique(resData$IndividualId)) {
@@ -480,8 +483,7 @@ NPODObject <- R6::R6Class(
         ptNumber <- ((ind - 1) %/% n_ind) + 1
         ySimList[[individualNumber, ptNumber]] <- df[[self$outputPath]][df$Time %in% timePointsList[[individualNumber]]]
       }
-      # })
-      print("Exiting Multi Mu")
+
       return(ySimList)
     }
   )

@@ -7,6 +7,7 @@ runDistributionInference <- function(method = "NPOD",
                                      cofactorPaths = NULL,
                                      inferenceParameters = NULL,
                                      numberOfIterations = 10,
+                                     useLogNormalLikelihood = NULL,
                                      initialGridSize = NULL,
                                      saveResultsPath = NULL,
                                      cacheFolder = NULL
@@ -20,6 +21,7 @@ runDistributionInference <- function(method = "NPOD",
                                                          cofactorPaths = cofactorPaths,
                                                          inferenceParameters = inferenceParameters,
                                                          numberOfIterations = numberOfIterations,
+                                                         useLogNormalLikelihood = useLogNormalLikelihood,
                                                          initialGridSize = initialGridSize,
                                                          saveResultsPath = saveResultsPath,
                                                          cacheFolder = cacheFolder
@@ -34,12 +36,13 @@ runDistributionInferenceNPOD <- function(referenceSimulationFilePath,
                                          cofactorPaths,
                                          inferenceParameters,
                                          numberOfIterations,
+                                         useLogNormalLikelihood,
                                          initialGridSize,
                                          saveResultsPath,
                                          cacheFolder,
                                          ...){
 
-  print("Selecting NPOD")
+  print("Starting NPOD")
 
   individualCharacteristics <- NULL
   cofactorUnits <- NULL
@@ -59,6 +62,7 @@ runDistributionInferenceNPOD <- function(referenceSimulationFilePath,
                          studyPopulationDataFilePath = studyPopulationDataFilePath,
                          cofactorPaths = cofactorPaths,
                          initialGridSize = initialGridSize,
+                         useLogNormalLikelihood = useLogNormalLikelihood,
                          npodRunSettings = npodSettings)
 
   npodResults <- npod$runNPOD()

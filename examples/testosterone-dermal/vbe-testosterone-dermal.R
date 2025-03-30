@@ -52,6 +52,7 @@ inferredDistribution <- runDistributionInference(method = "NPOD",
                                                  inferenceParameters = inferenceParameters,
                                                  initialGridSize = 40,
                                                  numberOfIterations = 10,
+                                                 useLogNormalLikelihood = TRUE,
                                                  saveResultsPath = file.path(subfolder,paste0(exampleName,"-npod-results-",dateTime,".rds")),
                                                  cacheFolder = file.path("examples/cacheFolder"))
 
@@ -87,7 +88,7 @@ refAndTestSimulationsInVirtualPopulation <- simulateVirtualPopulation(referenceS
 
 
 ########>   PLOTTING   <########
-source(file.path(subfolder,"plotting-script-vbe-testosterone-dermal.R"))
+source(file.path(subfolder,"plotting-script-vbe-testosterone-dermal.R"), encoding = 'UTF-8')
 
 
 ########>   STEP S4   <########

@@ -57,6 +57,7 @@ inferredDistribution <- runDistributionInference(method = "NPOD",
                                                  inferenceParameters = inferenceParameters,
                                                  initialGridSize = NULL,
                                                  numberOfIterations = 10,
+                                                 useLogNormalLikelihood = FALSE,
                                                  saveResultsPath = file.path(subfolder,paste0(exampleName,"-npod-results-",dateTime,".rds")),
                                                  cacheFolder = file.path("examples/cacheFolder"))
 

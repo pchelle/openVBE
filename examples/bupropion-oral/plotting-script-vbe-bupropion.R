@@ -47,7 +47,6 @@ plt <- plt + guides(
   fill = guide_legend(order = 1),     # Set the order for color legend
   shape = guide_legend(order = 2)   # Set the order for linetype legend
 )
-plt <- plt + scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1.5, by = 0.5))
 methods::show(plt)
 
 #################
@@ -80,7 +79,6 @@ Tplt <- Tplt + theme(panel.background = element_rect(fill = "white", colour = "w
 
 Tplt <- Tplt + scale_fill_manual(name = "Extended release", labels = "Simulated" , values = "#1e90ff")
 Tplt <- Tplt + scale_shape_manual(name = "", labels = "Observed" , values = 16)
-Tplt <- Tplt +  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1.5, by = 0.5))
 Tplt <- Tplt + guides(
   fill = guide_legend(order = 1),     # Set the order for color legend
   shape = guide_legend(order = 2)   # Set the order for linetype legend
@@ -109,7 +107,6 @@ vbeplt <- vbeplt + theme(legend.position = "bottom", legend.direction = "horizon
                          legend.text = element_text(size = 12),legend.title = element_text(size = 14),
                          strip.text = element_text(size = 14))
 vbeplt <- vbeplt + xlab("Time (h)") + ylab(expression(Bupropion~plasma~concentration~(µmol/l)))
-vbeplt <- vbeplt + scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1.5, by = 0.5))
 vbeplt <- vbeplt + scale_fill_manual(name = "Formulation" , labels = c("R" = "Sustained release", "T1" = "Extended release") , values = c("#ff0000","#1e90ff"))
 vbeplt <- vbeplt + scale_color_manual(name = "Formulation" , labels = c("R" = "Sustained release", "T1" = "Extended release") , values = c("#ff0000","#1e90ff"))
 methods::show(vbeplt)
