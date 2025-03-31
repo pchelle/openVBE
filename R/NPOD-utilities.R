@@ -3,7 +3,7 @@
 #' Computes the logarithm of a numeric input, replacing non-positive values with a small positive threshold to avoid errors.
 #'
 #' @param x Numeric vector. The values for which the logarithm is computed.
-#' @param base Numeric. The base of the logarithm. Default is the natural logarithm (exp(1)).
+#' @param base Numeric. The base of the logarithm. Default is the natural logarithm (`exp(1)`).
 #' @param min_value Numeric. A small positive threshold to replace non-positive values. Default is `.Machine$double.xmin`.
 #'
 #' @return A numeric vector of logarithm values, where non-positive inputs are replaced with `min_value` before computing the log.
@@ -31,7 +31,7 @@ logSafe <- function(x, base = exp(1), min_value = .Machine$double.xmin) {
 
 #' Safe Base-10 Logarithm Function
 #'
-#' Computes the base-10 logarithm of a numeric input using `logSafe`.
+#' Computes the base-10 logarithm of a numeric input using `logSafe()`.
 #'
 #' @param x Numeric vector. The values for which the base-10 logarithm is computed.
 #'
@@ -59,16 +59,17 @@ log10Safe <- function(x) {
 #' posterior(ans)
 #'
 #' @export
-posterior <- function(ans){
-  psi <- ans$PSI #psi[j,i] jth subject, ith support point
+posterior <- function(ans) {
+  # psi[j,i] jth subject, ith support point
+  psi <- ans$PSI
   nsub <- nrow(psi)
   nspp <- ncol(psi)
-  w <- matrix(ans$w, nrow=nspp)
+  w <- matrix(ans$w, nrow = nspp)
   post <- matrix(0, nsub, nspp)
   py <- psi %*% w
-  for(j in 1:nsub){
-    for(i in 1:nspp){
-      post[j,i] = psi[j,i] * w[i] / py[j]
+  for (j in 1:nsub) {
+    for (i in 1:nspp) {
+      post[j, i] <- psi[j, i] * w[i] / py[j]
     }
   }
   return(post)
@@ -84,27 +85,35 @@ posterior <- function(ans){
 #' @return A list with `points`, a data frame of weighted support points, and `weights`, a vector of posterior probabilities.
 #'
 #' @examples
-#' res <- list(theta = matrix(runif(9), 3, 3), w = c(0.2, 0.5, 0.3), demographicData = data.frame(Age = c(25, 30, 35), Weight = c(70, 80, 90), Height = c(170, 175, 180)))
+#' res <- list(
+#' theta = matrix(runif(9), 3, 3), 
+#' w = c(0.2, 0.5, 0.3), 
+#' demographicData = data.frame(Age = c(25, 30, 35), 
+#' Weight = c(70, 80, 90), Height = c(170, 175, 180))
+#' )
 #' getWeightedPoints(res)
 #'
 #' @export
-getWeightedPoints <- function(res, params = c('Age', 'Weight', 'Height')){
-  posteriorProbabilities<-posterior(res)
+getWeightedPoints <- function(res, params = c("Age", "Weight", "Height")) {
+  res$PSI <- res$theta
+  posteriorProbabilities <- posterior(res)
   numberTheta <- nrow(res$theta)
   numberSupportPoints <- ncol(res$theta)
-  parameterNames <- c(paste0("theta",seq(numberTheta)) , params)
-  columnNames <- c( "posteriorProbability", parameterNames )
+  parameterNames <- c(paste0("theta", seq(numberTheta)), params)
+  columnNames <- c("posteriorProbability", parameterNames)
   numberOfIndividuals <- nrow(res$demographicData)
-  weightedPointsDf <- data.frame(matrix(ncol = length(columnNames) , nrow = 0 ))
-  for (thetaIndex in seq_len(numberSupportPoints)){
-    thetaValues <- res$theta[,thetaIndex]
-    for (ind in seq_len(numberOfIndividuals)){
-      posteriorProbability <- posteriorProbabilities[ind,thetaIndex]
-      demParams <- sapply(params,function(par){ res$demographicData[ind,][[par]] })
-      rowValues <- c(posteriorProbability,thetaValues,demParams)
-      weightedPointsDf <- rbind.data.frame(weightedPointsDf,rowValues)
+  weightedPointsDf <- data.frame(matrix(ncol = length(columnNames), nrow = 0))
+  for (thetaIndex in seq_len(numberSupportPoints)) {
+    thetaValues <- res$theta[, thetaIndex]
+    for (ind in seq_len(numberOfIndividuals)) {
+      posteriorProbability <- posteriorProbabilities[ind, thetaIndex]
+      demParams <- sapply(params, function(par) {
+        res$demographicData[ind, ][[par]]
+      })
+      rowValues <- c(posteriorProbability, thetaValues, demParams)
+      weightedPointsDf <- rbind.data.frame(weightedPointsDf, rowValues)
     }
     colnames(weightedPointsDf) <- columnNames
   }
-  return(list(points = weightedPointsDf[, parameterNames],weights = weightedPointsDf$posteriorProbability))
+  return(list(points = weightedPointsDf[, parameterNames], weights = weightedPointsDf$posteriorProbability))
 }

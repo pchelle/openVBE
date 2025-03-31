@@ -19,18 +19,29 @@ Authors@R:
              comment = c(ORCID = "0000-0002-0167-4774"))
     )
 Description: A package to perform virtual bioequivalence using Open Systems Pharmacology Suite models.
-License: What license is it under?
+License: AGPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 Imports: 
+    readr,
+    MASS,
+    dplyr,
+    purrr,
+    tmvtnorm,
+    ggplot2,
+    cachem,
+    DiceDesign,
+    memoise,
+    neldermead,
+    nlme,
+    R6,
+    lme4,
+    lmerTest,
+    Matrix
 Depends:
   ospsuite,
-  mclust,
-  readr,
-  MASS,
-  dplyr,
-  purrr,
-  tmvtnorm,
-  ggplot2
-RoxygenNote: 7.3.1
+  mclust
+RoxygenNote: 7.3.2
+Remotes: 
+    ospsuite=Open-Systems-Pharmacology/OSPSuite-R

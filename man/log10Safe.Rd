@@ -13,7 +13,7 @@ log10Safe(x)
 A numeric vector of base-10 logarithm values, where non-positive inputs are replaced with a small positive threshold.
 }
 \description{
-Computes the base-10 logarithm of a numeric input using \code{logSafe}.
+Computes the base-10 logarithm of a numeric input using \code{logSafe()}.
 }
 \examples{
 log10Safe(c(1, 10, 0, -5))

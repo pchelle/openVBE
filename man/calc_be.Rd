@@ -27,17 +27,21 @@ subject id, time, concentrations, period, drug.}
 
 \item{subj_step}{Integer defining the step size between \code{subj_min} and
 \code{subj_max}, so that the program will test sample sizes
-\emph{N = \{subj_min, subj_min + subj_step, subj_min + 2*subj_step,...,subj_max\}}.}
+$N = \{subj_min, subj_min + subj_step, subj_min + 2*subj_step,...,subj_max\}$.}
 
 \item{seed}{Random number seed.}
+
+\item{ci_lcut}{Lower limit of the confidence interval.}
+
+\item{ci_ucut}{Upper limit of the confidence interval.}
 }
 \value{
-A list of lists: [[1:n_samp]][[1:\code{n_trials}]][[$par, $cross,
-$rep]][[1,2]], where n_samp is the number of sample sizes tested, e.g.,
+A list of lists: \verb{[[1:n_samp]][[1:n_trials]][["par", "cross", "rep"]][[1,2]]},
+where \code{n_samp} is the number of sample sizes tested, e.g.,
 (\code{subj_max} - \code{subj-min}) / \code{subj_step}.  The first item in the
 design is auc, and the second is cmax.  For example the comparison of auc using
 the third trial of the second sample size for the replicated design would be
-x[[2]][[3]]$rep[[1]].
+\code{x[[2]][[3]]$rep[[1]]}.
 }
 \description{
 Generates bioequivalence statistics
@@ -48,12 +52,9 @@ From simulated data with 1000 subjects per drug, the function first calculates
 area under the concentration-time curve (AUC) and maximum concentration (Cmax)
 for each simulated profiles. Periods are defined as >1 for each replicated
 administration (e.g., when intra-occasion varibility is simulated.)
-Linear regression (\code{\link{lm}}) is used on \code{log10(auc)} and \code{log10(cmax)}
-for parallel and cross-over designs, and mixed effect modeling (\code{\link{lmer}})
+Linear regression (\code{stats::lm()}) is used on \code{log10(auc)} and\code{log10(cmax)}
+for parallel and cross-over designs, and mixed effect modeling (\code{lmerTest::lmer()})
 is used for the replicated design.
-}
-\seealso{
-\code{\link{extractBE}}, \code{\link{plotBE}}
 }
 \author{
 Michael Neely

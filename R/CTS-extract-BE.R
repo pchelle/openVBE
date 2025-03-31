@@ -1,5 +1,4 @@
-getLmerParallelCrossover <- function(this_lmer,summary_settings){
-
+getLmerParallelCrossover <- function(this_lmer, summary_settings) {
   summary_settings <- list(ci = 0.9, ci_lcut = 0.8, ci_ucut = 1.25)
 
   ci <- summary_settings$ci
@@ -7,113 +6,133 @@ getLmerParallelCrossover <- function(this_lmer,summary_settings){
   ci_ucut <- summary_settings$ci_ucut
 
   sum_lm <- summary(this_lmer)
-  n_subj <- length(this_lmer$residuals[,"fixed"])/length(levels( as.factor(this_lmer$data$drug) ))
-  dd_eff <- sum_lm$tTable[2,1] #drug effect
-  se <- sum_lm$tTable[2,2] #standard error
-  df <- sum_lm$fixDF$X[2] #degrees of freedom
+  n_subj <- length(this_lmer$residuals[, "fixed"]) / length(levels(as.factor(this_lmer$data$drug)))
+  dd_eff <- sum_lm$tTable[2, 1] # drug effect
+  se <- sum_lm$tTable[2, 2] # standard error
+  df <- sum_lm$fixDF$X[2] # degrees of freedom
 
-  de_ratio <- 10**(dd_eff)
-  deltaCI <- qt((1-ci)/2,df,lower.tail=FALSE)*se
-  ci_lo <- de_ratio*10**(-deltaCI)
-  ci_up <- de_ratio*10**(deltaCI)
-  if ((ci_lo>=ci_lcut) & (ci_up<=ci_ucut)) {pBE_rep <- 1} else {pBE_rep <- 0}
+  de_ratio <- 10^(dd_eff)
+  deltaCI <- stats::qt((1 - ci) / 2, df, lower.tail = FALSE) * se
+  ci_lo <- de_ratio * 10^(-deltaCI)
+  ci_up <- de_ratio * 10^(deltaCI)
+  if ((ci_lo >= ci_lcut) & (ci_up <= ci_ucut)) {
+    pBE_rep <- 1
+  } else {
+    pBE_rep <- 0
+  }
 
-  return(data.frame(de_ratio = de_ratio, ci_lo = ci_lo, ci_up = ci_up,
-                    beta = dd_eff, se = se, df = df, deltaCI = deltaCI,
-                    pBE_rep = pBE_rep, n_subj = n_subj))
+  return(data.frame(
+    de_ratio = de_ratio, ci_lo = ci_lo, ci_up = ci_up,
+    beta = dd_eff, se = se, df = df, deltaCI = deltaCI,
+    pBE_rep = pBE_rep, n_subj = n_subj
+  ))
 }
 
-getLmerReplicate <- function(this_lmer,summary_settings){
-
+getLmerReplicate <- function(this_lmer, summary_settings) {
   ci <- summary_settings$ci
   ci_lcut <- summary_settings$ci_lcut
   ci_ucut <- summary_settings$ci_ucut
 
   sum_lmer <- summary(this_lmer)$coefficients
   n_subj <- summary(this_lmer)$ngrps
-  dd_eff <- sum_lmer[3,1] #drug effect
-  se <- sum_lmer[3,2] #standard error
-  df <- sum_lmer[3,3] #degrees of freedom
-  de_ratio <- 10**(dd_eff)
-  deltaCI <- qt(.05,df,lower.tail=FALSE)*se
-  ci_lo <- de_ratio*10**(-deltaCI)
-  ci_up <- de_ratio*10**(deltaCI)
-  if ((ci_lo>=ci_lcut) & (ci_up<=ci_ucut)) {pBE_rep <- 1} else {pBE_rep <- 0}
+  dd_eff <- sum_lmer[3, 1] # drug effect
+  se <- sum_lmer[3, 2] # standard error
+  df <- sum_lmer[3, 3] # degrees of freedom
+  de_ratio <- 10^(dd_eff)
+  deltaCI <- stats::qt(.05, df, lower.tail = FALSE) * se
+  ci_lo <- de_ratio * 10^(-deltaCI)
+  ci_up <- de_ratio * 10^(deltaCI)
+  if ((ci_lo >= ci_lcut) & (ci_up <= ci_ucut)) {
+    pBE_rep <- 1
+  } else {
+    pBE_rep <- 0
+  }
 
-  mse <- 2*(deltaCI/((sqrt(2/n_subj) * qt(.05, 2*n_subj-2, lower.tail=FALSE))))^2
-  cv_intra <- sqrt(exp(mse)-1) #not sure if this should change to 10**()
+  mse <- 2 * (deltaCI / ((sqrt(2 / n_subj) * stats::qt(.05, 2 * n_subj - 2, lower.tail = FALSE))))^2
+  cv_intra <- sqrt(exp(mse) - 1) # not sure if this should change to 10^()
 
-  return(data.frame(de_ratio = de_ratio, ci_lo = ci_lo, ci_up = ci_up,
-                    cv_intra = cv_intra, pBE_rep = pBE_rep, n_subj = n_subj))
+  return(data.frame(
+    de_ratio = de_ratio, ci_lo = ci_lo, ci_up = ci_up,
+    cv_intra = cv_intra, pBE_rep = pBE_rep, n_subj = n_subj
+  ))
 }
 
 getLmerFunctionsList <- list(parallel = getLmerParallelCrossover, crossover = getLmerParallelCrossover, replicate = getLmerReplicate)
 
-get_this_lmer <- function(this_lmer,design,summary_settings){
-  results_summary <- getLmerFunctionsList[[design]](this_lmer,summary_settings)
+get_this_lmer <- function(this_lmer, design, summary_settings) {
+  results_summary <- getLmerFunctionsList[[design]](this_lmer, summary_settings)
   return(results_summary)
 }
 
-get_summary <- function(lmer_res, summary_settings , design, index){
+#' @title get_summary
+#' @param lmer_res The output of (`calc_BE()`).
+#' @param summary_settings A list of settings for the summary function.
+#' @param design The design of the study, either `"parallel"`, `"crossover"`, or `"replicate"`.
+#' @param index The index of the design, either 1 or 2.
+#' @return A tibble with the summary statistics.
+#' @author Michael Neely
+#' @author Abdullah Hamadeh
+#' @export
+#' @importFrom purrr map map_dfr
+#' @importFrom dplyr group_by as_tibble
+get_summary <- function(lmer_res, summary_settings, design, index) {
   designIndex <- list(parallel = 1, crossover = 2, replicate = 3)
   this_res <- purrr::flatten(lmer_res)
-  this_res <- purrr::map(this_res,c(designIndex[[design]],index))
-  this_res <- purrr::map(this_res,get_this_lmer,designIndex[[design]],summary_settings)
-  this_res <- purrr::map_dfr(this_res,~as_tibble(.))
-  this_res <- dplyr::group_by(this_res,n_subj)
+  this_res <- purrr::map(this_res, c(designIndex[[design]], index))
+  this_res <- purrr::map(this_res, get_this_lmer, designIndex[[design]], summary_settings)
+  this_res <- purrr::map_dfr(this_res, ~ dplyr::as_tibble(.))
+  this_res <- dplyr::group_by(this_res, n_subj)
   return(this_res)
 }
 
 
-
-
-
-
-
-
-#' Extracts BE statistics from results of (\code{\link{calc_BE}}).
+#' Extracts BE statistics from results of (`calc_BE()`).
 #'
 #' @title Extract  BE statistics
-#' @param lmer_res The output of (\code{\link{calc_BE}}).
+#' @param lmer_res The output of (`calc_BE()`).
 #' @param ci Confidence interval for geometric mean ratio, default is 0.9 (90%)
 #' per FDA guidance.
 #' @param ci_lcut Lower confidence interval cutoff for geometric mean AUC or Cmax to be
 #' considered BE, default 0.8 per FDA guidance.
 #' @param ci_ucut Upper confidence interval cutoff for geometric mean AUC or Cmax to be
-#' considered BE, default 1.25 per FDA guidance.
-#' @return A list of lists: \[\[1:n_samp\]\]\[\[1:\code{n_trials}\]\]\[\[$par, $cross,
-#' $rep\]\]\[\[1,2]\], where n_samp is the number of sample sizes tested, e.g.,
-#' (\code{subj_max} - \code{subj-min}) / \code{subj_step}.  The first item in the
-#' design is auc, and the second is cmax.  For example the comparison of auc using
-#' the third trial of the second sample size for the replicated design would be
-#' x\[\[2\]\]\[\[3\]\]$rep\[\[1\]\].
-#' @seealso \code{\link{extractBE}}, \code{\link{plotBE}}
+#' considered BE, default `1.25` per FDA guidance.
+#' @return A list of lists: `[[1:n_samp]][[1:n_trials]][["par", "cross", "rep"]][[1,2]]`,
+#' where `n_samp` is the number of sample sizes tested, e.g., (`subj_max` - `subj-min`) / `subj_step`.
+#' The first item in the design is auc, and the second is cmax.
+#' For example the comparison of auc using the third trial of the second sample size
+#' for the replicated design would be `x[[2]][[3]]$rep[[1]]`.
 #' @author Michael Neely
 #' @author Abdullah Hamadeh
 #' @export
-extract_be <- function(lmer_res, ci = 0.9, ci_lcut = 0.8, ci_ucut = 1.25){
-
+#' @importFrom dplyr summarize across matches
+extract_be <- function(lmer_res, ci = 0.9, ci_lcut = 0.8, ci_ucut = 1.25) {
   summary_settings <- list(ci = 0.9, ci_lcut = 0.8, ci_ucut = 1.25)
 
   n_samp <- length(lmer_res)
   n_trials <- length(lmer_res[[1]])
-  rep_design <- inherits(lmer_res[[1]][[1]]$rep[[1]],"lmerModLmerTest")
+  rep_design <- inherits(lmer_res[[1]][[1]]$rep[[1]], "lmerModLmerTest")
 
-  auc_par <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "parallel",1) %>% summarize(across(.cols = !matches("pBE_rep"),mean), pBE_rep = sum(pBE_rep)/n_trials)
-  cmax_par <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "parallel",2) %>% summarize(across(.cols = !matches("pBE_rep"),mean), pBE_rep = sum(pBE_rep)/n_trials)
-  auc_cross <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "crossover",1) %>% summarize(across(.cols = !matches("pBE_rep"),mean), pBE_rep = sum(pBE_rep)/n_trials)
-  cmax_cross <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "crossover",2) %>% summarize(across(.cols = !matches("pBE_rep"),mean), pBE_rep = sum(pBE_rep)/n_trials)
+  auc_par <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "parallel", 1) |>
+    dplyr::summarize(dplyr::across(.cols = !dplyr::matches("pBE_rep"), mean), pBE_rep = sum(pBE_rep) / n_trials)
+  cmax_par <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "parallel", 2) |>
+    dplyr::summarize(dplyr::across(.cols = !dplyr::matches("pBE_rep"), mean), pBE_rep = sum(pBE_rep) / n_trials)
+  auc_cross <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "crossover", 1) |>
+    dplyr::summarize(dplyr::across(.cols = !dplyr::matches("pBE_rep"), mean), pBE_rep = sum(pBE_rep) / n_trials)
+  cmax_cross <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "crossover", 2) |>
+    dplyr::summarize(dplyr::across(.cols = !dplyr::matches("pBE_rep"), mean), pBE_rep = sum(pBE_rep) / n_trials)
 
-  auc_par_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "parallel",1)
-  cmax_par_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "parallel",2)
-  auc_cross_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "crossover",1)
-  cmax_cross_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "crossover",2)
+  auc_par_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "parallel", 1)
+  cmax_par_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "parallel", 2)
+  auc_cross_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "crossover", 1)
+  cmax_cross_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "crossover", 2)
 
-  if(rep_design){
-    auc_rep <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "replicate",1) %>% summarize(across(.cols = !matches("pBE_rep"),mean), pBE_rep = sum(pBE_rep)/n_trials)
-    cmax_rep <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "replicate",2) %>% summarize(across(.cols = !matches("pBE_rep"),mean), pBE_rep = sum(pBE_rep)/n_trials)
-    auc_rep_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "replicate",1)
-    cmax_rep_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "replicate",2)
+  if (rep_design) {
+    auc_rep <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "replicate", 1) |>
+      dplyr::summarize(dplyr::across(.cols = !dplyr::matches("pBE_rep"), mean), pBE_rep = sum(pBE_rep) / n_trials)
+    cmax_rep <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "replicate", 2) |>
+      dplyr::summarize(dplyr::across(.cols = !dplyr::matches("pBE_rep"), mean), pBE_rep = sum(pBE_rep) / n_trials)
+    auc_rep_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "replicate", 1)
+    cmax_rep_all <- get_summary(lmer_res = lmer_res, summary_settings = summary_settings, design = "replicate", 2)
   } else {
     auc_rep <- NA
     cmax_rep <- NA
@@ -121,19 +140,16 @@ extract_be <- function(lmer_res, ci = 0.9, ci_lcut = 0.8, ci_ucut = 1.25){
     cmax_rep_all <- NA
   }
 
-  return(list(summary = list(auc_par = auc_par, cmax_par = cmax_par,
-                             auc_cross = auc_cross, cmax_cross = cmax_cross,
-                             auc_rep = auc_rep, cmax_rep = cmax_rep),
-              trials = list(auc_par_all = auc_par_all, cmax_par_all = cmax_par_all,
-                            auc_cross_all = auc_cross_all, cmax_cross_all = cmax_cross_all,
-                            auc_rep_all = auc_rep_all, cmax_rep_all = cmax_rep_all)))
-
-
-
-  return(list(auc_par = auc_par, cmax_par = cmax_par, auc_par_all = auc_par_all, cmax_par_all = cmax_par_all,
-              auc_cross = auc_cross, cmax_cross = cmax_cross, auc_cross_all = auc_cross_all, cmax_cross_all = cmax_cross_all,
-              auc_rep = auc_rep, cmax_rep = cmax_rep, auc_rep_all = auc_rep_all, cmax_rep_all = cmax_rep_all))
-
+  return(list(
+    summary = list(
+      auc_par = auc_par, cmax_par = cmax_par,
+      auc_cross = auc_cross, cmax_cross = cmax_cross,
+      auc_rep = auc_rep, cmax_rep = cmax_rep
+    ),
+    trials = list(
+      auc_par_all = auc_par_all, cmax_par_all = cmax_par_all,
+      auc_cross_all = auc_cross_all, cmax_cross_all = cmax_cross_all,
+      auc_rep_all = auc_rep_all, cmax_rep_all = cmax_rep_all
+    )
+  ))
 }
-
-

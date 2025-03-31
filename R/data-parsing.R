@@ -1,4 +1,4 @@
-#'@export
+#' @export
 standardColumnNames <- list(
   idColumn = "id",
   occasionColumn = "occasion",
@@ -17,15 +17,16 @@ standardColumnNames <- list(
   ageColumn = "age",
   ageUnitsColumn = "ageUnits",
   gestationalAgeColumn = "gestationalAge",
-  gestationalAgeUnitsColumn = "gestationalAgeUnits")
+  gestationalAgeUnitsColumn = "gestationalAgeUnits"
+)
 
 
-#'@export
-experimentFileInputs <- c("idColumn","occasionColumn","timeColumn","timeUnitsColumn","outputNamesColumn","outputValuesColumn","outputUnitsColumn")
+#' @export
+experimentFileInputs <- c("idColumn", "occasionColumn", "timeColumn", "timeUnitsColumn", "outputNamesColumn", "outputValuesColumn", "outputUnitsColumn")
 
 
-#'@export
-populationFileInputs <- c("idColumn","speciesColumn","populationColumn","genderColumn","weightColumn","weightUnitsColumn","heightColumn","heightUnitsColumn","ageColumn","ageUnitsColumn","gestationalAgeColumn", "gestationalAgeUnitsColumn")
+#' @export
+populationFileInputs <- c("idColumn", "speciesColumn", "populationColumn", "genderColumn", "weightColumn", "weightUnitsColumn", "heightColumn", "heightUnitsColumn", "ageColumn", "ageUnitsColumn", "gestationalAgeColumn", "gestationalAgeUnitsColumn")
 
 individualParameterPaths <- list()
 individualParameterPaths[[standardColumnNames$weightColumn]] <- "Organism|Weight"
@@ -33,10 +34,12 @@ individualParameterPaths[[standardColumnNames$heightColumn]] <- "Organism|Height
 individualParameterPaths[[standardColumnNames$ageColumn]] <- "Organism|Age"
 individualParameterPaths[[standardColumnNames$gestationalAgeColumn]] <- "Organism|Gestational age"
 
-allCofactorNames <- c(standardColumnNames$weightColumn,
-                      standardColumnNames$heightColumn,
-                      standardColumnNames$ageColumn,
-                      standardColumnNames$gestationalAgeColumn)
+allCofactorNames <- c(
+  standardColumnNames$weightColumn,
+  standardColumnNames$heightColumn,
+  standardColumnNames$ageColumn,
+  standardColumnNames$gestationalAgeColumn
+)
 
 cofactorDimensions <- list()
 cofactorDimensions[[standardColumnNames$weightColumn]] <- ospDimensions$Mass
@@ -44,7 +47,7 @@ cofactorDimensions[[standardColumnNames$heightColumn]] <- ospDimensions$Length
 cofactorDimensions[[standardColumnNames$ageColumn]] <- ospDimensions$`Age in years`
 cofactorDimensions[[standardColumnNames$gestationalAgeColumn]] <- ospDimensions$`Age in weeks`
 
-#'@export
+#' @export
 processPopulationDataFile <- function(populationFilePathOrDataframe,
                                       idColumn,
                                       speciesColumn,
@@ -57,12 +60,13 @@ processPopulationDataFile <- function(populationFilePathOrDataframe,
                                       ageColumn = NULL,
                                       ageUnitsColumn = NULL,
                                       gestationalAgeColumn = NULL,
-                                      gestationalAgeUnitsColumn = NULL){
+                                      gestationalAgeUnitsColumn = NULL) {
   dataDf <- populationFilePathOrDataframe
-  if(is.character(populationFilePathOrDataframe)){
+  if (is.character(populationFilePathOrDataframe)) {
     dataDf <- read.csv(populationFilePathOrDataframe,
-                       check.names = FALSE,
-                       fileEncoding = "UTF-8-BOM")
+      check.names = FALSE,
+      fileEncoding = "UTF-8-BOM"
+    )
   }
   colnames(dataDf)[colnames(dataDf) == idColumn] <- standardColumnNames$idColumn
   colnames(dataDf)[colnames(dataDf) == speciesColumn] <- standardColumnNames$speciesColumn
@@ -77,8 +81,10 @@ processPopulationDataFile <- function(populationFilePathOrDataframe,
   colnames(dataDf)[colnames(dataDf) == gestationalAgeColumn] <- standardColumnNames$gestationalAgeColumn
   colnames(dataDf)[colnames(dataDf) == gestationalAgeUnitsColumn] <- standardColumnNames$gestationalAgeUnitsColumn
 
-  validColumnNames <- sapply(populationFileInputs,function(x){standardColumnNames[[x]]})
-  dataDf <- unique(dataDf[,intersect(colnames(dataDf),validColumnNames)])
+  validColumnNames <- sapply(populationFileInputs, function(x) {
+    standardColumnNames[[x]]
+  })
+  dataDf <- unique(dataDf[, intersect(colnames(dataDf), validColumnNames)])
 
   ## Validate no more than one row per individual id
 
@@ -87,7 +93,7 @@ processPopulationDataFile <- function(populationFilePathOrDataframe,
 
 
 
-#'@export
+#' @export
 processExperimentDataFile <- function(experimentDataFilePathOrDataframe,
                                       idColumn,
                                       occasionColumn,
@@ -95,13 +101,13 @@ processExperimentDataFile <- function(experimentDataFilePathOrDataframe,
                                       timeUnitsColumn,
                                       outputNamesColumn,
                                       outputValuesColumn,
-                                      outputUnitsColumn){
-
+                                      outputUnitsColumn) {
   dataDf <- experimentDataFilePathOrDataframe
-  if(is.character(experimentDataFilePathOrDataframe)){
+  if (is.character(experimentDataFilePathOrDataframe)) {
     dataDf <- read.csv(experimentDataFilePathOrDataframe,
-                       check.names = FALSE,
-                       fileEncoding = "UTF-8-BOM")
+      check.names = FALSE,
+      fileEncoding = "UTF-8-BOM"
+    )
   }
 
   colnames(dataDf)[colnames(dataDf) == idColumn] <- standardColumnNames$idColumn
@@ -111,8 +117,10 @@ processExperimentDataFile <- function(experimentDataFilePathOrDataframe,
   colnames(dataDf)[colnames(dataDf) == outputNamesColumn] <- standardColumnNames$outputNamesColumn
   colnames(dataDf)[colnames(dataDf) == outputValuesColumn] <- standardColumnNames$outputValuesColumn
   colnames(dataDf)[colnames(dataDf) == outputUnitsColumn] <- standardColumnNames$outputUnitsColumn
-  validColumnNames <- sapply(experimentFileInputs,function(x){standardColumnNames[[x]]})
-  dataDf <- dataDf[,intersect(colnames(dataDf),validColumnNames)]
+  validColumnNames <- sapply(experimentFileInputs, function(x) {
+    standardColumnNames[[x]]
+  })
+  dataDf <- dataDf[, intersect(colnames(dataDf), validColumnNames)]
 
   return(dataDf)
 }
