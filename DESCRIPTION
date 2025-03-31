@@ -45,3 +45,7 @@ Depends:
 RoxygenNote: 7.3.2
 Remotes: 
     ospsuite=Open-Systems-Pharmacology/OSPSuite-R
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
