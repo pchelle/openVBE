@@ -18,7 +18,12 @@ A list with \code{points}, a data frame of weighted support points, and \code{we
 Computes weighted support points using posterior probabilities and demographic parameters.
 }
 \examples{
-res <- list(theta = matrix(runif(9), 3, 3), w = c(0.2, 0.5, 0.3), demographicData = data.frame(Age = c(25, 30, 35), Weight = c(70, 80, 90), Height = c(170, 175, 180)))
+res <- list(
+theta = matrix(runif(9), 3, 3), 
+w = c(0.2, 0.5, 0.3), 
+demographicData = data.frame(Age = c(25, 30, 35), 
+Weight = c(70, 80, 90), Height = c(170, 175, 180))
+)
 getWeightedPoints(res)
 
 }

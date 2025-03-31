@@ -1,9 +1,13 @@
+#' @title IPM
+#' @description
+#' The IPM function solves a convex optimization problem using an interior-point Newton method.
+#' It iteratively updates lambda, `lam`, while ensuring feasibility constraints.
+#' A damped step-size approach is used to maintain numerical stability.
+#' @param Psi A matrix of non-negative values.
+#' @return A list with the objective function value and the optimal lambda.
+#' @keywords internal
+#' @importFrom Matrix Diagonal
 IPM <- function(Psi) {
-  # The IPM function solves a convex optimization problem using an
-  # interior-point Newton method. It iteratively updates lambda (lam)
-  # while ensuring feasibility constraints. A damped step-size approach
-  # is used to maintain numerical stability.
-
   Psi <- abs(Psi)
 
   # Check Input Specifications
@@ -55,7 +59,7 @@ IPM <- function(Psi) {
 
     # Form the matrix H
     inner <- lam / y
-    H <- Psi %*% Diagonal(x = inner, n = col) %*% t(Psi) + Diagonal(x = Plam / w, n = row)
+    H <- Psi %*% Matrix::Diagonal(x = inner, n = col) %*% t(Psi) + Matrix::Diagonal(x = Plam / w, n = row)
     H <- as.matrix(H)
     # Cholesky factorization of H
     cholH <- try(chol(H), silent = TRUE)

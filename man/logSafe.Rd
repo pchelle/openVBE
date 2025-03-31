@@ -9,7 +9,7 @@ logSafe(x, base = exp(1), min_value = .Machine$double.xmin)
 \arguments{
 \item{x}{Numeric vector. The values for which the logarithm is computed.}
 
-\item{base}{Numeric. The base of the logarithm. Default is the natural logarithm (exp(1)).}
+\item{base}{Numeric. The base of the logarithm. Default is the natural logarithm (\code{exp(1)}).}
 
 \item{min_value}{Numeric. A small positive threshold to replace non-positive values. Default is \code{.Machine$double.xmin}.}
 }
