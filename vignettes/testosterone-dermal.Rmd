@@ -1,8 +1,8 @@
 ---
-title: "testosterone-dermal"
+title: "Testosterone Dermal"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{testosterone-dermal}
+  %\VignetteIndexEntry{Testosterone Dermal}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

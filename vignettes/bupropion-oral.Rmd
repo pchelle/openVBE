@@ -1,8 +1,8 @@
 ---
-title: "Bupropion"
+title: "Bupropion Oral"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{bupropion-oral}
+  %\VignetteIndexEntry{Bupropion Oral}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
