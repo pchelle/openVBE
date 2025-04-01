@@ -145,7 +145,7 @@ sigma <- sqrt(log(1 + popBWCV^2))
 CI_95 <- stats::qlnorm(c(0.025, 0.975), meanlog = mu, sdlog = sigma)
 ```
 
-```{r}
+```r
 demographyRanges <- list(
   weight = list(range = c(CI_95[1], CI_95[2]), units = "kg")
   )
