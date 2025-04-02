@@ -301,8 +301,8 @@ simulateVirtualPopulation <- function(referenceSimulationFilePath,
     drug = combinedResultsData[["drug"]]
   )
 
-  resultsData$id <- as.factor(resultsData$id)
-  resultsData$per <- as.factor(resultsData$per)
+  resultsData$id <- resultsData$id
+  resultsData$per <- resultsData$per
   resultsData$drug <- as.factor(resultsData$drug)
 
   return(resultsData)
