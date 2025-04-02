@@ -3,4 +3,7 @@
 .RData
 .Ruserdata
 examples/cacheFolder/*.rds
-inst/doc
+vignettes/cacheFolder/*.rds
+cacheFolder/*.rds
+inst/doc 
+*npod-results*.rds
