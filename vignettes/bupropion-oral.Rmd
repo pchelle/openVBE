@@ -215,14 +215,7 @@ ctsResults <- runClinicalTrialSimulation(
   )
 ```
 
-Clinical trial simulation results
-
-```r
-pltList <- plotClinicalTrialSimulationResults(ctsResults)
-show(pltList)
-```
-
-Virtual bioequivalence bands
+Clinical trial simulation results as virtual bioequivalence bands
 
 ```r
 bandsPlot <- plotVBEBands(ctsResults)

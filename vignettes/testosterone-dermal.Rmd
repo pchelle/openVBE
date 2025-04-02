@@ -191,9 +191,6 @@ ctsResults <- runClinicalTrialSimulation(
   n_trials = 1000
   )
 
-pltList <- plotClinicalTrialSimulationResults(ctsResults)
-show(pltList)
-
 bandsPlot <- plotVBEBands(ctsResults)
 show(bandsPlot)
 
