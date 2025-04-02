@@ -155,7 +155,7 @@ virtualPopulation <- createVirtualPopulation(
   numberOfVirtualIndividuals = 100,
   clusters = getClusters(
     inferredDistribution = inferredDistribution,
-    numberOfClusters = 4
+    numberOfClusters = 3
     ),
   demographyRanges = demographyRanges
   )
