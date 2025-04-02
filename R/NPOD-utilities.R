@@ -95,7 +95,6 @@ posterior <- function(ans) {
 #'
 #' @export
 getWeightedPoints <- function(res, params = c("Age", "Weight", "Height")) {
-  res$PSI <- res$theta
   posteriorProbabilities <- posterior(res)
   numberTheta <- nrow(res$theta)
   numberSupportPoints <- ncol(res$theta)
