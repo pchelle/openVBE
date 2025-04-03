@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>bupropion-oral • openVBE</title>
+<title>Bupropion Oral • openVBE</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="bupropion-oral">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Bupropion Oral">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -49,15 +49,22 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/bupropion-oral.html">bupropion-oral</a>
+      <a href="../articles/bupropion-oral.html">Bupropion Oral</a>
     </li>
     <li>
-      <a href="../articles/testosterone-dermal.html">testosterone-dermal</a>
+      <a href="../articles/testosterone-dermal.html">Testosterone Dermal</a>
     </li>
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/abdullahhamadeh/openVBE/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -70,123 +77,510 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>bupropion-oral</h1>
+      <h1 data-toc-skip>Bupropion Oral</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/abdullahhamadeh/openVBE/blob/master/vignettes/bupropion-oral.Rmd" class="external-link"><code>vignettes/bupropion-oral.Rmd</code></a></small>
       <div class="hidden name"><code>bupropion-oral.Rmd</code></div>
 
     </div>
 
     
     
+<div class="section level2">
+<h2 id="bupropion-oral-absorption-pbpk-model-case-study">Bupropion oral absorption PBPK model case study<a class="anchor" aria-label="anchor" href="#bupropion-oral-absorption-pbpk-model-case-study"></a>
+</h2>
+<p>Bupropion is an antidepressant of the aminoketone class and indicated
+for the treatment of major depressive disorder [21]. Wellbutrin® was
+first marketed as an immediate release (IR) product in 1980 in 75 and
+100 mg tablets, 3-times daily administration [22]. In 1996, a sustained
+release (SR) formulation was made available for twice daily
+administration as 100 and 150 mg tablets, and, in 2003 an extended
+formulation (ER) was developed for once-daily administration as 150 and
+200 mg tablets [23]. This case study evaluates virtually the potential
+for BE of the 150 mg sustained release (SR) tablet, which, for the
+purposes of this case study, is considered to be the R formulation, and
+the 150 mg extended release (ER) tablet, considered here to be the T
+formulation.</p>
+</div>
+<div class="section level2">
+<h2 id="oral-application-case-study-data-sets">Oral application case study data sets<a class="anchor" aria-label="anchor" href="#oral-application-case-study-data-sets"></a>
+</h2>
+<p>In this example, data set D1 consists of bupropion plasma
+concentration versus time profiles reported in Connarn et al. [22] for
+30 adults who received a 150 mg dose via the SR tablet formulation (R).
+Data set D2 consists of the weights and heights of each individual in
+data set D1. The data were generated within the scope of FDA-funded
+contract HHSF223201310164C and fully reported by Connarn et
+al. [22].</p>
+<div class="section level3">
+<h3 id="openvbe-code">openVBE code<a class="anchor" aria-label="anchor" href="#openvbe-code"></a>
+</h3>
+<p>The following code gets the Data sets D1 and D2 from
+<code>pkDataFilePath = "pk_data_reference.csv"</code> and
+<code>studyPopulationDataFilePath = "population_data.csv"</code>
+respectively.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># library(openVBE)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">openVBE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://abdullahhamadeh.github.io/openVBE/" class="external-link">openVBE</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: ospsuite</span></span>
+<span><span class="co">#&gt; Loading required package: rSharp</span></span>
+<span><span class="co">#&gt; Loading required package: mclust</span></span>
+<span><span class="co">#&gt; Package 'mclust' version 6.1.1</span></span>
+<span><span class="co">#&gt; Type 'citation("mclust")' for citing this R package in publications.</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'stats::filter' by 'dplyr::filter' when</span></span>
+<span><span class="co">#&gt; loading 'openVBE'</span></span>
+<span></span>
 <span><span class="va">dateTime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y%m%d"</span><span class="op">)</span>, <span class="st">"_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%H%M%S"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">exampleName</span> <span class="op">&lt;-</span> <span class="st">"bupropion-oral"</span></span>
-<span><span class="va">subfolder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"examples"</span>,<span class="va">exampleName</span><span class="op">)</span></span>
+<span><span class="va">subfolder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"examples"</span>, <span class="va">exampleName</span>, package<span class="op">=</span><span class="st">"openVBE"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#Data set D1</span></span>
-<span><span class="va">pkDataFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>, <span class="st">"bupropion_pk_data_reference.csv"</span><span class="op">)</span></span>
+<span><span class="co"># D1</span></span>
+<span><span class="va">pkDataFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>, <span class="st">"pk_data_reference.csv"</span><span class="op">)</span></span>
+<span><span class="co"># D2</span></span>
+<span><span class="va">studyPopulationDataFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"population_data.csv"</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="step-w1---pk-model-development">Step W1 - PK model development<a class="anchor" aria-label="anchor" href="#step-w1---pk-model-development"></a>
+</h2>
+<p>PBPK models for bupropion administered via the R and T formulations
+in this case study were developed in PK-Sim® to represent the mean
+individual from the clinical study population. The development and
+validation of the two PBPK models is detailed in Supplementary Material
+2.</p>
+<p>The models differ only in the tablet dissolution profiles for the SR
+and ER formulations, both of which were reported in Marok et al. [24]
+and are characterized by Weibull kinetics. These profiles are shown in
+Figure 6A. In the model, the Weibull kinetics express the time-dependent
+undissolved fraction
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">F(t)</annotation></semantics></math>
+of the tablet as:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn><mo>−</mo><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>⋅</mo><msup><mi>t</mi><mi>β</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="1.0em"></mspace><mtext mathvariant="normal">with</mtext><mspace width="1.0em"></mspace><mi>α</mi><mo>=</mo><mfrac><mrow><mo>ln</mo><mn>2</mn></mrow><msubsup><mi>t</mi><mn>50</mn><mi>β</mi></msubsup></mfrac></mrow><annotation encoding="application/x-tex">
+F(t) = 1 - \exp(\alpha \cdot t^{\beta}) \quad \text{with} \quad \alpha = \frac{\ln 2}{t_{50}^{\beta}}
+</annotation></semantics></math> Here, the parameter
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>t</mi><mn>50</mn></msub><annotation encoding="application/x-tex">t_{50}</annotation></semantics></math>
+determines the time at which 50% of the tablet has dissolved in the
+<em>in vitro</em> dissolution test, whereas
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+determines the shape of the dissolution curve obtained in the in the
+<em>in vitro</em> dissolution test. To allow for possible
+individual-specific variations in the dissolution rate, we introduce two
+parameters,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\theta_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\theta_2</annotation></semantics></math>,
+that respectively scale
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>t</mi><mn>50</mn></msub><annotation encoding="application/x-tex">t_{50}</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+such that the undissolved fraction is given by:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>,</mo><msub><mi>θ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>θ</mi><mn>2</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn><mo>−</mo><mo>exp</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>⋅</mo><msup><mi>t</mi><mrow><msub><mi>θ</mi><mn>2</mn></msub><mo>⋅</mo><mi>β</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="1.0em"></mspace><mtext mathvariant="normal">with</mtext><mspace width="1.0em"></mspace><mi>α</mi><mo>=</mo><mfrac><mrow><mo>ln</mo><mn>2</mn></mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>θ</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>t</mi><mn>50</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mrow><msub><mi>θ</mi><mn>2</mn></msub><mo>⋅</mo><mi>β</mi></mrow></msup></mfrac></mrow><annotation encoding="application/x-tex">
+F(t, \theta_1, \theta_2) = 1 - \exp(\alpha \cdot t^{\theta_2 \cdot \beta}) \quad \text{with} \quad \alpha = \frac{\ln 2}{(\theta_1 \cdot t_{50})^{\theta_2 \cdot \beta}}
+</annotation></semantics></math> Parameters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\theta_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\theta_2</annotation></semantics></math>
+modify the in vitro dissolution profiles to yield a corresponding
+individual-specific in vivo dissolution profile. Thus, even though in
+vitro dissolution profile itself may change across formulations, it is
+assumed here that the scalings
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\theta_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\theta_2</annotation></semantics></math>
+that transform the dissolution profile from the in vitro to the in vivo
+context are individual-specific and independent of the formulation. With
+these scalings, the time at which 50% dissolution is achieved in vivo
+would then be
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mn>1</mn></msub><mo>⋅</mo><msub><mi>t</mi><mn>50</mn></msub></mrow><annotation encoding="application/x-tex">\theta_1 \cdot t_{50}</annotation></semantics></math>,
+whereas the shape of the dissolution profile in vivo would be
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mn>2</mn></msub><mo>⋅</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\theta_2 \cdot \beta</annotation></semantics></math>.
+Parameters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\theta_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\theta_2</annotation></semantics></math>
+therefore serve to quantify the in vitro to in vivo extrapolation
+(IVIVE) of the dissolution profiles. It is acknowledged here that this
+IVIVE is a major assumption of the model and is adopted here for the
+purposes of demonstrating the steps of the VBE workflow. The reader is
+referred to the literature on the various approaches to oral IVIVE that
+are outside the scope of the present work [25, 26]. An alternative
+approach to scaling the Weibull parameters, not pursued here, would be
+to introduce a simple individual-specific time scaling of the
+dissolution profile to describe the IVIVE by mapping the in vitro
+dissolution profile to the in vivo context. This time-scaling method has
+the advantage that the in vivo dissolution profile retains the overall
+shape of the in vitro profile.</p>
+<div class="section level3">
+<h3 id="openvbe-code-1">openVBE code<a class="anchor" aria-label="anchor" href="#openvbe-code-1"></a>
+</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">referenceSimulationFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"reference_formulation.pkml"</span><span class="op">)</span></span>
+<span><span class="va">testSimulationFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"test_formulation.pkml"</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="step-w2---learning-posterior-distributions-of-iiv-parameters">Step W2 - Learning posterior distributions of IIV parameters<a class="anchor" aria-label="anchor" href="#step-w2---learning-posterior-distributions-of-iiv-parameters"></a>
+</h2>
+<p>A sensitivity analysis was performed to identify the
+individual-specific model parameters influencing the AUC and Cmax of the
+bupropion plasma concentration versus time profiles. In addition to the
+individual-specific IVIVE parameters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\theta_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\theta_2</annotation></semantics></math>,
+an additional parameter,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>3</mn></msub><annotation encoding="application/x-tex">\theta_3</annotation></semantics></math>,
+that scales the total clearance of bupropion in the liver and intestinal
+walls was identified as being influential.</p>
+<p>Figure 6B shows the support points inferred by the NPOD algorithm
+that approximates the joint posterior distribution of parameters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\theta_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\theta_2</annotation></semantics></math>.
+The probability of each support point is represented by its color.</p>
+<div class="section level3">
+<h3 id="openvbe-code-2">openVBE code<a class="anchor" aria-label="anchor" href="#openvbe-code-2"></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">outputPath</span> <span class="op">&lt;-</span> <span class="st">"Organism|PeripheralVenousBlood|Bupropion human 1st order|Plasma (Peripheral Venous Blood)"</span></span></code></pre></div>
+<p>Identified individual-specific parameters that are uncertain and
+influential with respect to plasma concentration profiles.</p>
+<p>Note that <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(openVPE)</a></code> also loads
+<code>ospsuite</code> package which allows to directly access the
+namespace of the latter package.</p>
+<blockquote>
+<p><code>ospDimensions</code> and <code>ospUnits</code> list all the
+dimensions and units available in the OSP Suite. These variables are
+exported by the <code>ospsuite</code> package. Loading
+<code>openVBE</code> then allows to directly access them.</p>
+</blockquote>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ScaleFactorX</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/VBEParameter.html">vbeParameter</a></span><span class="op">(</span></span>
+<span>  pathInReferenceSimulation <span class="op">=</span> <span class="st">"Applications|PO 150 mg - human|SR PO 150 mg - FDA table|ScaleFactorX"</span>,</span>
+<span>  pathInTestSimulation <span class="op">=</span> <span class="st">"Applications|PO 150 mg - human|ER PO 150 mg - FDA table|ScaleFactorX"</span>,</span>
+<span>  displayName <span class="op">=</span> <span class="st">"ScaleFactorX"</span>,</span>
+<span>  dimension <span class="op">=</span> <span class="va">ospDimensions</span><span class="op">$</span><span class="va">Dimensionless</span>,</span>
+<span>  unit <span class="op">=</span> <span class="va">ospUnits</span><span class="op">$</span><span class="va">Dimensionless</span><span class="op">$</span><span class="va">Unitless</span>,</span>
+<span>  lowerBound <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  upperBound <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  logIncrement <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="co">#Data set D2</span></span>
-<span><span class="va">studyPopulationDataFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"bupropion_study_population_data.csv"</span><span class="op">)</span></span>
+<span><span class="va">ScaleFactorY</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/VBEParameter.html">vbeParameter</a></span><span class="op">(</span></span>
+<span>  pathInReferenceSimulation <span class="op">=</span> <span class="st">"Applications|PO 150 mg - human|SR PO 150 mg - FDA table|ScaleFactorY"</span>,</span>
+<span>  pathInTestSimulation <span class="op">=</span>  <span class="st">"Applications|PO 150 mg - human|ER PO 150 mg - FDA table|ScaleFactorY"</span>,</span>
+<span>  displayName <span class="op">=</span> <span class="st">"ScaleFactorY"</span>,</span>
+<span>  dimension <span class="op">=</span> <span class="va">ospDimensions</span><span class="op">$</span><span class="va">Dimensionless</span>,</span>
+<span>  unit <span class="op">=</span> <span class="va">ospUnits</span><span class="op">$</span><span class="va">Dimensionless</span><span class="op">$</span><span class="va">Unitless</span>,</span>
+<span>  lowerBound <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  upperBound <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  logIncrement <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="co">########&gt;   STEP S1   &lt;########</span></span>
-<span><span class="va">referenceSimulationFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"bupropion-oral-reference-formulation-SR-PO-150 mg.pkml"</span><span class="op">)</span></span>
-<span><span class="va">testSimulationFilePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"bupropion-oral-test-formulation-ER-PO-150 mg.pkml"</span><span class="op">)</span></span>
+<span><span class="va">LiverIntestinalCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/VBEParameter.html">vbeParameter</a></span><span class="op">(</span></span>
+<span>  pathInReferenceSimulation <span class="op">=</span> <span class="st">"Liver and Intestinal CL|Reference concentration"</span>,</span>
+<span>  pathInTestSimulation <span class="op">=</span> <span class="st">"Liver and Intestinal CL|Reference concentration"</span>,</span>
+<span>  displayName <span class="op">=</span> <span class="st">"LiverIntestinalCL"</span>,</span>
+<span>  dimension <span class="op">=</span> <span class="va">ospDimensions</span><span class="op">$</span><span class="va">`Concentration (molar)`</span>,</span>
+<span>  unit <span class="op">=</span> <span class="va">ospUnits</span><span class="op">$</span><span class="va">`Concentration [molar]`</span><span class="op">$</span><span class="va">`µmol/l`</span>,</span>
+<span>  lowerBound <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  upperBound <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  logIncrement <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
+<span><span class="va">inferenceParameters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">ScaleFactorX</span>,<span class="va">ScaleFactorY</span>,<span class="va">LiverIntestinalCL</span><span class="op">)</span></span></code></pre></div>
+<p>Learns the posterior distributions of <code>ScaleFactorX</code>,
+<code>ScaleFactorY</code>, and <code>LiverIntestinalCL</code> IIV
+parameters</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">inferredDistribution</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runDistributionInference.html">runDistributionInference</a></span><span class="op">(</span></span>
+<span>  method <span class="op">=</span> <span class="st">"NPOD"</span>,</span>
+<span>  referenceSimulationFilePath <span class="op">=</span> <span class="va">referenceSimulationFilePath</span>,</span>
+<span>  outputPath <span class="op">=</span> <span class="va">outputPath</span>,</span>
+<span>  pkDataFilePath <span class="op">=</span> <span class="va">pkDataFilePath</span>,</span>
+<span>  studyPopulationDataFilePath <span class="op">=</span> <span class="va">studyPopulationDataFilePath</span>,</span>
+<span>  cofactorPaths <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  inferenceParameters <span class="op">=</span> <span class="va">inferenceParameters</span>,</span>
+<span>  initialGridSize <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  numberOfIterations <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  useLogNormalLikelihood <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  saveResultsPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">exampleName</span>,<span class="st">"-npod-results-"</span>,<span class="va">dateTime</span>,<span class="st">".rds"</span><span class="op">)</span>,</span>
+<span>  cacheFolder <span class="op">=</span> <span class="st">"cacheFolder"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Starting NPOD"</span></span>
+<span><span class="co">#&gt; [1] "Starting optimization run:"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]     [,2]      [,3]      [,4]      [,5]      [,6]      [,7]</span></span>
+<span><span class="co">#&gt; [1,] 0.8333333 1.166667 0.6111111 0.9444444 1.2777778 0.7222222 1.0555556</span></span>
+<span><span class="co">#&gt; [2,] 0.8333333 1.166667 0.9444444 1.2777778 0.6111111 1.3888889 0.7222222</span></span>
+<span><span class="co">#&gt; [3,] 0.8333333 1.166667 1.2777778 0.6111111 0.9444444 1.0555556 1.3888889</span></span>
+<span><span class="co">#&gt;           [,8]      [,9]     [,10]     [,11]     [,12]     [,13]     [,14]</span></span>
+<span><span class="co">#&gt; [1,] 1.3888889 0.5370370 0.8703704 1.2037037 0.6481481 0.9814815 1.3148148</span></span>
+<span><span class="co">#&gt; [2,] 1.0555556 1.0925926 1.4259259 0.7592593 1.2037037 0.5370370 0.8703704</span></span>
+<span><span class="co">#&gt; [3,] 0.7222222 0.9814815 1.3148148 0.6481481 0.7592593 1.0925926 1.4259259</span></span>
+<span><span class="co">#&gt;          [,15]     [,16]     [,17]     [,18]     [,19]    [,20]     [,21]</span></span>
+<span><span class="co">#&gt; [1,] 0.7592593 1.0925926 1.4259259 0.5740741 0.9074074 1.240741 0.6851852</span></span>
+<span><span class="co">#&gt; [2,] 0.6481481 0.9814815 1.3148148 1.3518519 0.6851852 1.018519 0.7962963</span></span>
+<span><span class="co">#&gt; [3,] 1.2037037 0.5370370 0.8703704 1.4629630 0.7962963 1.129630 0.9074074</span></span>
+<span><span class="co">#&gt;         [,22]     [,23]     [,24]    [,25]     [,26]     [,27]     [,28]</span></span>
+<span><span class="co">#&gt; [1,] 1.018519 1.3518519 0.7962963 1.129630 1.4629630 0.5123457 0.8456790</span></span>
+<span><span class="co">#&gt; [2,] 1.129630 1.4629630 0.9074074 1.240741 0.5740741 0.8456790 1.1790123</span></span>
+<span><span class="co">#&gt; [3,] 1.240741 0.5740741 0.6851852 1.018519 1.3518519 1.1790123 0.5123457</span></span>
+<span><span class="co">#&gt;          [,29]     [,30]     [,31]     [,32]</span></span>
+<span><span class="co">#&gt; [1,] 1.1790123 0.6234568 0.9567901 1.2901235</span></span>
+<span><span class="co">#&gt; [2,] 0.5123457 1.2901235 0.6234568 0.9567901</span></span>
+<span><span class="co">#&gt; [3,] 0.8456790 0.9567901 1.2901235 0.6234568</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt;  [1] 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125</span></span>
+<span><span class="co">#&gt; [10] 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125</span></span>
+<span><span class="co">#&gt; [19] 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125 0.03125</span></span>
+<span><span class="co">#&gt; [28] 0.03125 0.03125 0.03125 0.03125 0.03125</span></span>
+<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]      [,2]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778 0.9074074</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111 0.6851852</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444 0.7962963</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt; [1] 0.8697281 0.1302719</span></span>
+<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; [1] "Starting fminsearch and prune"</span></span>
+<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; Timing stopped at: 3.675 0.006 1.41</span></span>
+<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
+<span><span class="co">#&gt; [1] "prune..."</span></span>
+<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "Completed fminsearch and prune"</span></span>
+<span><span class="co">#&gt; [1] "Counter: "</span></span>
+<span><span class="co">#&gt; [1] 2</span></span>
+<span><span class="co">#&gt; [1] "Starting optimization run:"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; [1] "Starting fminsearch and prune"</span></span>
+<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; Timing stopped at: 3.502 0.008 1.425</span></span>
+<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
+<span><span class="co">#&gt; [1] "prune..."</span></span>
+<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "Completed fminsearch and prune"</span></span>
+<span><span class="co">#&gt; [1] "Counter: "</span></span>
+<span><span class="co">#&gt; [1] 3</span></span>
+<span><span class="co">#&gt; [1] "Starting optimization run:"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
+<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span>
+<span><span class="co">#&gt; [1] "lambda:"</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; [1] "Stopping: Absolute change in objective function is smaller than theta_F."</span></span>
+<span><span class="co">#&gt;           [,1]</span></span>
+<span><span class="co">#&gt; [1,] 1.2777778</span></span>
+<span><span class="co">#&gt; [2,] 0.6111111</span></span>
+<span><span class="co">#&gt; [3,] 0.9444444</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="step-w3---virtual-population-simulation">Step W3 - Virtual population simulation<a class="anchor" aria-label="anchor" href="#step-w3---virtual-population-simulation"></a>
+</h2>
+<p>Figure 6C shows the joint distribution between
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\theta_1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\theta_2</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>3</mn></msub><annotation encoding="application/x-tex">\theta_3</annotation></semantics></math>
+and the demographic descriptors of weight and height for the clinical
+study population. Overlayed are level sets of a two-cluster Gaussian
+mixture model that is fitted to the support points shown.</p>
+<p>A virtual population of 100 individuals with weight range 50 – 110 kg
+and height range 160 – 200 cm was generated using PK-Sim®. This is
+performed via an algorithm that samples a set of anatomical and
+physiological parameters for each virtual individual from a probability
+distribution [27] conditioned on individual weight and height. For each
+virtual individual, these sampled parameters were extended with a sample
+of parameters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>1</mn></msub><annotation encoding="application/x-tex">\theta_1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>2</mn></msub><annotation encoding="application/x-tex">\theta_2</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mn>3</mn></msub><annotation encoding="application/x-tex">\theta_3</annotation></semantics></math>
+from the Gaussian mixture model in Figure 6C conditional on the
+individual’s weight and height.</p>
+<p>Bupropion plasma concentration versus time profiles were simulated
+for the virtual population of 100 subjects following oral administration
+of the R (sustained release) and T (extended release) formulation, each
+containing a 150 mg dose of bupropion, separated by a washout period.
+Figure 6D shows the simulated range of plasma PK profiles following
+administration of the reference SR formulation in pink together with
+data points indicating the individualized observed values from data set
+D1. This plot shows that the observed range of bupropion data points is
+well-captured by the simulated profiles, providing an internal
+validation of the Gaussian mixture model. Figure 6E superimposes the
+plasma concentrations of the virtual population when the R and the T
+products were administered. Although there is a degree of overlap
+between the simulated plasma concentration profile ranges of the two
+formulations, the SR formulation shows a greater peak (Cmax) and an
+earlier peak time (Tmax) compared to the ER formulation.</p>
+<p>Figure 6F shows a post-hoc external validation of the two-cluster
+Gaussian mixture model (Figure 6C) by comparing the simulated bupropion
+plasma concentration range following administration of the T product
+with the corresponding observations.</p>
+<div class="section level3">
+<h3 id="openvbe-code-3">openVBE code<a class="anchor" aria-label="anchor" href="#openvbe-code-3"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">demographyRanges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">110</span><span class="op">)</span>, units <span class="op">=</span> <span class="st">"kg"</span><span class="op">)</span>,</span>
+<span>  height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>,<span class="fl">20</span><span class="op">)</span>, units <span class="op">=</span> <span class="st">"dm"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
+<span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getClusters.html">getClusters</a></span><span class="op">(</span></span>
+<span>  inferredDistribution <span class="op">=</span> <span class="va">inferredDistribution</span>,</span>
+<span>  numberOfClusters <span class="op">=</span> <span class="fl">2</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co"># [1] "Building cluster model based on NPOD results."</span></span>
+<span><span class="co"># Error in posteriorProbabilities[ind, thetaIndex] : </span></span>
+<span><span class="co">#  subscript out of bounds</span></span>
 <span></span>
-<span><span class="co">########&gt;   STEP S2   &lt;########</span></span>
+<span><span class="va">virtualPopulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createVirtualPopulation.html">createVirtualPopulation</a></span><span class="op">(</span></span>
+<span>  inferredDistribution <span class="op">=</span> <span class="va">inferredDistribution</span>,</span>
+<span>  proportionOfFemales <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  numberOfVirtualIndividuals <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  clusters <span class="op">=</span> <span class="va">clusters</span>,</span>
+<span>  demographyRanges <span class="op">=</span> <span class="va">demographyRanges</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="va">outputPath</span> <span class="op">&lt;-</span> <span class="st">"Organism|PeripheralVenousBlood|Bupropion human 1st order|Plasma (Peripheral Venous Blood)"</span></span>
-<span><span class="co">#Identified individual-specific parameters that are uncertain and influential with respect to plasma concentration profiles</span></span>
-<span><span class="va">ScaleFactorX</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/VBEParameter.html">VBEParameter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>pathInReferenceSimulation <span class="op">=</span> <span class="st">"Applications|PO 150 mg - human|SR PO 150 mg - FDA table|ScaleFactorX"</span>,</span>
-<span>                                 pathInTestSimulation <span class="op">=</span> <span class="st">"Applications|PO 150 mg - human|ER PO 150 mg - FDA table|ScaleFactorX"</span>,</span>
-<span>                                 displayName <span class="op">=</span> <span class="st">"ScaleFactorX"</span>,</span>
-<span>                                 dimension <span class="op">=</span> <span class="va">ospDimensions</span><span class="op">$</span><span class="va">Dimensionless</span>,</span>
-<span>                                 unit <span class="op">=</span> <span class="va">ospUnits</span><span class="op">$</span><span class="va">Dimensionless</span><span class="op">$</span><span class="va">Unitless</span>,</span>
-<span>                                 lowerBound <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>                                 upperBound <span class="op">=</span> <span class="fl">1.5</span>,</span>
-<span>                                 logIncrement <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">ScaleFactorY</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/VBEParameter.html">VBEParameter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>pathInReferenceSimulation <span class="op">=</span> <span class="st">"Applications|PO 150 mg - human|SR PO 150 mg - FDA table|ScaleFactorY"</span>,</span>
-<span>                                 pathInTestSimulation <span class="op">=</span>  <span class="st">"Applications|PO 150 mg - human|ER PO 150 mg - FDA table|ScaleFactorY"</span>,</span>
-<span>                                 displayName <span class="op">=</span> <span class="st">"ScaleFactorY"</span>,</span>
-<span>                                 dimension <span class="op">=</span> <span class="va">ospDimensions</span><span class="op">$</span><span class="va">Dimensionless</span>,</span>
-<span>                                 unit <span class="op">=</span> <span class="va">ospUnits</span><span class="op">$</span><span class="va">Dimensionless</span><span class="op">$</span><span class="va">Unitless</span>,</span>
-<span>                                 lowerBound <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>                                 upperBound <span class="op">=</span> <span class="fl">1.5</span>,</span>
-<span>                                 logIncrement <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">LiverIntestinalCL</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/VBEParameter.html">VBEParameter</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>pathInReferenceSimulation <span class="op">=</span> <span class="st">"Liver and Intestinal CL|Reference concentration"</span>,</span>
-<span>                                      pathInTestSimulation <span class="op">=</span> <span class="st">"Liver and Intestinal CL|Reference concentration"</span>,</span>
-<span>                                      displayName <span class="op">=</span> <span class="st">"LiverIntestinalCL"</span>,</span>
-<span>                                      dimension <span class="op">=</span> <span class="va">ospDimensions</span><span class="op">$</span><span class="va">`Concentration (molar)`</span>,</span>
-<span>                                      unit <span class="op">=</span> <span class="va">ospUnits</span><span class="op">$</span><span class="va">`Concentration [molar]`</span><span class="op">$</span><span class="va">`µmol/l`</span>,</span>
-<span>                                      lowerBound <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>                                      upperBound <span class="op">=</span> <span class="fl">1.5</span>,</span>
-<span>                                      logIncrement <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="va">inferenceParameters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">ScaleFactorX</span>,<span class="va">ScaleFactorY</span>,<span class="va">LiverIntestinalCL</span><span class="op">)</span></span>
-<span><span class="va">inferredDistribution</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runDistributionInference.html">runDistributionInference</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"NPOD"</span>,</span>
-<span>                                                 referenceSimulationFilePath <span class="op">=</span> <span class="va">referenceSimulationFilePath</span>,</span>
-<span>                                                 outputPath <span class="op">=</span> <span class="va">outputPath</span>,</span>
-<span>                                                 pkDataFilePath <span class="op">=</span> <span class="va">pkDataFilePath</span>,</span>
-<span>                                                 studyPopulationDataFilePath <span class="op">=</span> <span class="va">studyPopulationDataFilePath</span>,</span>
-<span>                                                 cofactorPaths <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                                                 inferenceParameters <span class="op">=</span> <span class="va">inferenceParameters</span>,</span>
-<span>                                                 initialGridSize <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                                                 numberOfIterations <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>                                                 useLogNormalLikelihood <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                                                 saveResultsPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">exampleName</span>,<span class="st">"-npod-results-"</span>,<span class="va">dateTime</span>,<span class="st">".rds"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                                                 cacheFolder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"examples/cacheFolder"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co">########&gt;   STEP S3   &lt;########</span></span>
-<span><span class="va">demographyRanges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">110</span><span class="op">)</span>,</span>
-<span>                                       units <span class="op">=</span> <span class="st">"kg"</span><span class="op">)</span>,</span>
-<span>                         height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>,<span class="fl">20</span><span class="op">)</span>,</span>
-<span>                                       units <span class="op">=</span> <span class="st">"dm"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getClusters.html">getClusters</a></span><span class="op">(</span>inferredDistribution <span class="op">=</span> <span class="va">inferredDistribution</span>,</span>
-<span>                        numberOfClusters <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">virtualPopulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createVirtualPopulation.html">createVirtualPopulation</a></span><span class="op">(</span>inferredDistribution <span class="op">=</span> <span class="va">inferredDistribution</span>,</span>
-<span>                                             proportionOfFemales <span class="op">=</span> <span class="fl">50</span>,</span>
-<span>                                             numberOfVirtualIndividuals <span class="op">=</span> <span class="fl">100</span>,</span>
-<span>                                             clusters <span class="op">=</span> <span class="va">clusters</span>,</span>
-<span>                                             demographyRanges <span class="op">=</span> <span class="va">demographyRanges</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">refAndTestSimulationsInVirtualPopulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulateVirtualPopulation.html">simulateVirtualPopulation</a></span><span class="op">(</span>referenceSimulationFilePath <span class="op">=</span> <span class="va">referenceSimulationFilePath</span>,</span>
-<span>                                                                      testSimulationFilePath <span class="op">=</span> <span class="va">testSimulationFilePath</span>,</span>
-<span>                                                                      referencePopulationDataframe <span class="op">=</span> <span class="va">virtualPopulation</span><span class="op">$</span><span class="va">referencePopulationDataframe</span>,</span>
-<span>                                                                      testPopulationDataframe <span class="op">=</span> <span class="va">virtualPopulation</span><span class="op">$</span><span class="va">testPopulationDataframe</span>,</span>
-<span>                                                                      outputPath <span class="op">=</span> <span class="va">outputPath</span>,</span>
-<span>                                                                      startTime <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>                                                                      endTime <span class="op">=</span> <span class="fl">5760</span>,</span>
-<span>                                                                      resolutionPtsMin <span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">15</span><span class="op">)</span>  <span class="co"># pts/min</span></span>
-<span></span>
-<span></span>
-<span><span class="co">########&gt;   PLOTTING   &lt;########</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"plotting-script-vbe-bupropion.R"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co">########&gt;   STEP S4   &lt;########</span></span>
-<span><span class="va">ctsResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runClinicalTrialSimulation.html">runClinicalTrialSimulation</a></span><span class="op">(</span>virtualPopulationSimulationResults <span class="op">=</span> <span class="va">refAndTestSimulationsInVirtualPopulation</span>,n_trials <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">pltList</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotClinicalTrialSimulationResults.html">plotClinicalTrialSimulationResults</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
-<span><span class="fu">show</span><span class="op">(</span><span class="va">pltList</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">bandsPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotVBEBands.html">plotVBEBands</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
-<span><span class="fu">show</span><span class="op">(</span><span class="va">bandsPlot</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">probabilityPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotVBEProbability.html">plotVBEProbability</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
+<span><span class="va">refAndTestSimulationsInVirtualPopulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulateVirtualPopulation.html">simulateVirtualPopulation</a></span><span class="op">(</span></span>
+<span>  referenceSimulationFilePath <span class="op">=</span> <span class="va">referenceSimulationFilePath</span>,</span>
+<span>  testSimulationFilePath <span class="op">=</span> <span class="va">testSimulationFilePath</span>,</span>
+<span>  referencePopulationDataframe <span class="op">=</span> <span class="va">virtualPopulation</span><span class="op">$</span><span class="va">referencePopulationDataframe</span>,</span>
+<span>  testPopulationDataframe <span class="op">=</span> <span class="va">virtualPopulation</span><span class="op">$</span><span class="va">testPopulationDataframe</span>,</span>
+<span>  outputPath <span class="op">=</span> <span class="va">outputPath</span>,</span>
+<span>  startTime <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  endTime <span class="op">=</span> <span class="fl">5760</span>, <span class="co">#min</span></span>
+<span>  resolutionPtsMin <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">15</span> <span class="co"># pts/min</span></span>
+<span>  <span class="op">)</span>  </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"plotting_script.R"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="step-w4---clinical-trial-simulation-and-vbe-evaluation">Step W4 - Clinical trial simulation and VBE evaluation<a class="anchor" aria-label="anchor" href="#step-w4---clinical-trial-simulation-and-vbe-evaluation"></a>
+</h2>
+<p>Figure 7 presents the results of the clinical trial simulation and
+the subsequent VBE analysis between the two bupropion formulations,
+conducted for trial sizes ranging for 5 to 50 subjects. The plasma
+concentration versus time profiles obtained in step W3 for the virtual
+population were input to the CTS package to predict the AUC and Cmax GMR
+distributions for different study population sizes under both parallel
+and crossover trial designs. A total of 1000 clinical trials were
+simulated for each trial size.</p>
+<p>As in Figure 5, the red bands in Figure 7A-D show the distribution of
+the point estimate of the GMR of the PK parameter (AUC or Cmax) over the
+1000 trials, while the blue bands represent the distribution of the
+lower and upper 90% CI of the GMR. For the AUC, the blue bands fell
+within the 0.80 – 1.25 range at all trial sizes under the crossover
+design (Figure 7A), and were within those limits for trial sizes larger
+than 40 subjects under the parallel design (Figure 7B). The probability
+of BE was near unity for the crossover design at all trial sizes and
+exceeded to 90% for trials of 40 subjects and over (Figure 7E). The
+narrow, near-unity, AUC confidence intervals under a crossover design
+stem from the model assumptions that 1) comparable total amounts of
+bupropion are released from both formulations albeit at different rates,
+and 2) in the crossover design, each individual is assumed to have the
+same bupropion clearance when receiving the two formulations. As such,
+the only source of variability is the difference in in vivo performance
+of the R versus the T product. The similar bioavailabilities of the two
+formulations and the identical clearance therefore result in very
+similar AUC values per individual for the two formulations.</p>
+<p>In contrast, at large trial study sizes, the Cmax GMR confidence
+bands fell outside the 0.80-1.25 BE range for the crossover design
+(Figure 7C) and overlapped with the 0.80 lower limit under the parallel
+design (Figure 7D). This failure to demonstrate BE is to be expected
+considering the faster release of bupropion from the R (sustained
+release) product compared to the T (extended release). Consequently, as
+shown in Figure 7E, the probability of bioequivalence for Cmax was near
+zero under both trial designs.</p>
+<div class="section level3">
+<h3 id="openvbe-code-4">openVBE code<a class="anchor" aria-label="anchor" href="#openvbe-code-4"></a>
+</h3>
+<p>Runs the clinical trial simulations</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ctsResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runClinicalTrialSimulation.html">runClinicalTrialSimulation</a></span><span class="op">(</span></span>
+<span>  virtualPopulationSimulationResults <span class="op">=</span> <span class="va">refAndTestSimulationsInVirtualPopulation</span>,</span>
+<span>  n_trials <span class="op">=</span> <span class="fl">500</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p>Clinical trial simulation results as virtual bioequivalence bands</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bandsPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotVBEBands.html">plotVBEBands</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
+<span><span class="fu">show</span><span class="op">(</span><span class="va">bandsPlot</span><span class="op">)</span></span></code></pre></div>
+<p>Probability of virtual bioequivalence</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">probabilityPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotVBEProbability.html">plotVBEProbability</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
 <span><span class="fu">show</span><span class="op">(</span><span class="va">probabilityPlot</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
