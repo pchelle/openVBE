@@ -86,16 +86,16 @@ posterior <- function(ans) {
 #'
 #' @examples
 #' res <- list(
-#' theta = matrix(runif(9), 3, 3), 
-#' w = c(0.2, 0.5, 0.3), 
-#' demographicData = data.frame(Age = c(25, 30, 35), 
+#' theta = matrix(c(0.25,0.625,0.125,0.9375),ncol = 2),
+#' w = c(0.7, 0.3),
+#' PSI = matrix(runif(6),ncol=2),
+#' demographicData = data.frame(Age = c(25, 30, 35),
 #' Weight = c(70, 80, 90), Height = c(170, 175, 180))
 #' )
 #' getWeightedPoints(res)
 #'
 #' @export
 getWeightedPoints <- function(res, params = c("Age", "Weight", "Height")) {
-  res$PSI <- res$theta
   posteriorProbabilities <- posterior(res)
   numberTheta <- nrow(res$theta)
   numberSupportPoints <- ncol(res$theta)

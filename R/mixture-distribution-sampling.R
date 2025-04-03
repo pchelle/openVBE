@@ -31,7 +31,7 @@ getProbabilityOfPoint <- function(point, mu, sigma) {
     return(dnorm(x = point, mean = mu, sd = sigma))
   }
 
-  return(mclust::dmvnorm(x = matrix(point, ncol = length(mu)), mean = mu, sigma = sigma))
+  return(mclust::dmvnorm(matrix(point, ncol = length(mu)), mean = mu, sigma = sigma))
 }
 
 getClusterConditionalProbabilities <- function(mclstResults, givenPoints) {

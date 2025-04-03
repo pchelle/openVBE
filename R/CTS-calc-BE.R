@@ -110,8 +110,8 @@ this_samp <- function(trialNumber, pkParameterData, nSubjects) {
   lmCross <- list(rep(NA, 2)) # for crossover
   lmerRep <- list(rep(NA, 2)) # for replicate
 
-  lmPar[[1]] <- suppressWarnings(nlme::lme(fixed = log10(auc) ~ drug, random = ~ 1 | per, data = par_df))
-  lmPar[[2]] <- suppressWarnings(nlme::lme(fixed = log10(cmax) ~ drug, random = ~ 1 | per, data = par_df))
+  lmPar[[1]] <- suppressWarnings(lm(log10(auc) ~ drug, data = par_df))
+  lmPar[[2]] <- suppressWarnings(lm(log10(cmax) ~ drug, data = par_df))
   lmCross[[1]] <- suppressWarnings(nlme::lme(fixed = log10(auc) ~ drug, random = ~ 1 | id, data = cross_df))
   lmCross[[2]] <- suppressWarnings(nlme::lme(fixed = log10(cmax) ~ drug, random = ~ 1 | id, data = cross_df))
 
@@ -170,6 +170,6 @@ calc_be <- function(data,
   n_samp <- length(nSubjects)
   set.seed(seed)
 
-  res_list <- lapply(nSubjects, get_lmer, pkParameterData, n_trials) # purrr::map(nSubjects,get_lmer,n_trials,pkParameterData)
+  res_list <- lapply(nSubjects, get_lmer, pkParameterData, n_trials)
   return(res_list)
 }

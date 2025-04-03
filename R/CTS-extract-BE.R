@@ -1,4 +1,34 @@
-getLmerParallelCrossover <- function(this_lmer, summary_settings) {
+getLmerParallel <- function(this_lmer, summary_settings) {
+  summary_settings <- list(ci = 0.9, ci_lcut = 0.8, ci_ucut = 1.25)
+
+  ci <- summary_settings$ci
+  ci_lcut <- summary_settings$ci_lcut
+  ci_ucut <- summary_settings$ci_ucut
+
+  sum_lm <- summary(this_lmer)
+  n_subj <- length(this_lmer$residuals) / length(this_lmer$xlevels$drug)
+  dd_eff <- sum_lm$coefficients[2,1] #drug effect
+  se <- sum_lm$coefficients[2,2] #standard error
+  df <- sum_lm$df[2] #degrees of freedom
+
+  de_ratio <- 10^(dd_eff)
+  deltaCI <- stats::qt((1 - ci) / 2, df, lower.tail = FALSE) * se
+  ci_lo <- de_ratio * 10^(-deltaCI)
+  ci_up <- de_ratio * 10^(deltaCI)
+  if ((ci_lo >= ci_lcut) & (ci_up <= ci_ucut)) {
+    pBE_rep <- 1
+  } else {
+    pBE_rep <- 0
+  }
+
+  return(data.frame(
+    de_ratio = de_ratio, ci_lo = ci_lo, ci_up = ci_up,
+    beta = dd_eff, se = se, df = df, deltaCI = deltaCI,
+    pBE_rep = pBE_rep, n_subj = n_subj
+  ))
+}
+
+getLmerCrossover <- function(this_lmer, summary_settings) {
   summary_settings <- list(ci = 0.9, ci_lcut = 0.8, ci_ucut = 1.25)
 
   ci <- summary_settings$ci
@@ -57,7 +87,7 @@ getLmerReplicate <- function(this_lmer, summary_settings) {
   ))
 }
 
-getLmerFunctionsList <- list(parallel = getLmerParallelCrossover, crossover = getLmerParallelCrossover, replicate = getLmerReplicate)
+getLmerFunctionsList <- list(parallel = getLmerParallel, crossover = getLmerCrossover, replicate = getLmerReplicate)
 
 get_this_lmer <- function(this_lmer, design, summary_settings) {
   results_summary <- getLmerFunctionsList[[design]](this_lmer, summary_settings)

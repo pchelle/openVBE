@@ -20,6 +20,9 @@ Authors@R:
     )
 Description: A package to perform virtual bioequivalence using Open Systems Pharmacology Suite models.
 License: AGPL (>= 3)
+URL: https://abdullahhamadeh.github.io/openVBE/
+BugReports: 
+    https://github.com/abdullahhamadeh/openVBE/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -46,6 +49,7 @@ RoxygenNote: 7.3.2
 Remotes: 
     ospsuite=Open-Systems-Pharmacology/OSPSuite-R
 Suggests: 
+    devtools,
     knitr,
     rmarkdown
 VignetteBuilder: knitr

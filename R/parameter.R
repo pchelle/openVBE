@@ -186,3 +186,38 @@ getParameterPathsInTestSimulation <- function(parameterList) {
   })
   return(parameterPaths)
 }
+
+#' @title vbeParameter
+#' @description
+#' Initialize a VBEParameter object.
+#'
+#' @param pathInReferenceSimulation Character. Path to the parameter in the reference simulation.
+#' @param pathInTestSimulation Character. Path to the parameter in the test simulation.
+#' @param displayName Character. Display name of the parameter (defaults to `pathInReferenceSimulation`).
+#' @param dimension Character. Dimension of the parameter.
+#' @param unit Character. Unit of the parameter.
+#' @param lowerBound Numeric. Lower bound for the parameter (default: 1e-1).
+#' @param upperBound Numeric. Upper bound for the parameter (default: 1e1).
+#' @param logIncrement Logical. Whether the parameter is incremented log-arithmically (default: TRUE).
+#'
+#' @return A character vector of parameter paths in the test simulation.
+#' @export
+vbeParameter <- function(pathInReferenceSimulation,
+            pathInTestSimulation,
+            displayName = NULL,
+            dimension,
+            unit,
+            lowerBound = 1e-1,
+            upperBound = 1e1,
+            logIncrement = TRUE){
+  VBEParameter$new(
+    pathInReferenceSimulation = pathInReferenceSimulation,
+    pathInTestSimulation = pathInTestSimulation,
+    displayName = displayName,
+    dimension = dimension,
+    unit = unit,
+    lowerBound = lowerBound,
+    upperBound = upperBound,
+    logIncrement = logIncrement
+  )
+}
