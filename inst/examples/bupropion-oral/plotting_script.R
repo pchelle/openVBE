@@ -51,7 +51,7 @@ methods::show(plt)
 
 #################
 
-TpkData <- read.csv(file.path(subfolder,"bupropion_pk_data_test.csv"))
+TpkData <- read.csv(file.path(subfolder,"pk_data_test.csv"))
 TpkData$id <-as.numeric(as.factor(TpkData$id))
 TpkData <- TpkData[TpkData$frm == "ER",]
 TpkData$time_h <- TpkData$time_h
