@@ -1,3 +1,5 @@
+library(ggplot2)
+
 plasmaDf <- refAndTestSimulationsInVirtualPopulation
 plasmaDf$conc <- toUnit(quantityOrDimension = ospDimensions$`Concentration (mass)`,
                         values = plasmaDf$conc,
