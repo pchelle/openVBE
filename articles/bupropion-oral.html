@@ -342,7 +342,7 @@ parameters</p>
 <span><span class="co">#&gt; [2,] 0.6111111 0.6851852</span></span>
 <span><span class="co">#&gt; [3,] 0.9444444 0.7962963</span></span>
 <span><span class="co">#&gt; [1] "lambda:"</span></span>
-<span><span class="co">#&gt; [1] 0.8697281 0.1302719</span></span>
+<span><span class="co">#&gt; [1] 0.8695608 0.1304392</span></span>
 <span><span class="co">#&gt; [1] "After Condense 2"</span></span>
 <span><span class="co">#&gt; [1] "theta:"</span></span>
 <span><span class="co">#&gt;           [,1]</span></span>
@@ -358,7 +358,7 @@ parameters</p>
 <span><span class="co">#&gt; [1,] 1.2777778</span></span>
 <span><span class="co">#&gt; [2,] 0.6111111</span></span>
 <span><span class="co">#&gt; [3,] 0.9444444</span></span>
-<span><span class="co">#&gt; Timing stopped at: 3.675 0.006 1.41</span></span>
+<span><span class="co">#&gt; Timing stopped at: 3.473 0.011 1.415</span></span>
 <span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
 <span><span class="co">#&gt; [1] "prune..."</span></span>
 <span><span class="co">#&gt; [1] "...complete."</span></span>
@@ -400,7 +400,7 @@ parameters</p>
 <span><span class="co">#&gt; [1,] 1.2777778</span></span>
 <span><span class="co">#&gt; [2,] 0.6111111</span></span>
 <span><span class="co">#&gt; [3,] 0.9444444</span></span>
-<span><span class="co">#&gt; Timing stopped at: 3.502 0.008 1.425</span></span>
+<span><span class="co">#&gt; Timing stopped at: 3.549 0.011 1.415</span></span>
 <span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
 <span><span class="co">#&gt; [1] "prune..."</span></span>
 <span><span class="co">#&gt; [1] "...complete."</span></span>
@@ -496,12 +496,12 @@ with the corresponding observations.</p>
 <span></span>
 <span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getClusters.html">getClusters</a></span><span class="op">(</span></span>
 <span>  inferredDistribution <span class="op">=</span> <span class="va">inferredDistribution</span>,</span>
-<span>  numberOfClusters <span class="op">=</span> <span class="fl">2</span></span>
+<span>  numberOfClusters <span class="op">=</span> <span class="fl">1</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co"># [1] "Building cluster model based on NPOD results."</span></span>
-<span><span class="co"># Error in posteriorProbabilities[ind, thetaIndex] : </span></span>
-<span><span class="co">#  subscript out of bounds</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "Building cluster model based on NPOD results."</span></span></code></pre></div>
+<p><img src="bupropion-oral_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="va">virtualPopulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createVirtualPopulation.html">createVirtualPopulation</a></span><span class="op">(</span></span>
 <span>  inferredDistribution <span class="op">=</span> <span class="va">inferredDistribution</span>,</span>
 <span>  proportionOfFemales <span class="op">=</span> <span class="fl">50</span>,</span>
@@ -509,6 +509,108 @@ with the corresponding observations.</p>
 <span>  clusters <span class="op">=</span> <span class="va">clusters</span>,</span>
 <span>  demographyRanges <span class="op">=</span> <span class="va">demographyRanges</span></span>
 <span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Creating virtual population characteristics."</span></span>
+<span><span class="co">#&gt; [1] "Creating virtual population."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 1 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 2 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 3 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 4 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 5 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 6 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 7 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 8 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 9 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 10 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 11 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 12 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 13 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 14 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 15 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 16 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 17 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 18 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 19 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 20 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 21 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 22 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 23 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 24 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 25 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 26 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 27 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 28 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 29 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 30 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 31 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 32 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 33 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 34 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 35 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 36 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 37 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 38 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 39 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 40 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 41 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 42 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 43 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 44 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 45 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 46 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 47 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 48 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 49 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 50 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 51 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 52 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 53 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 54 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 55 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 56 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 57 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 58 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 59 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 60 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 61 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 62 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 63 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 64 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 65 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 66 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 67 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 68 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 69 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 70 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 71 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 72 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 73 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 74 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 75 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 76 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 77 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 78 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 79 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 80 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 81 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 82 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 83 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 84 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 85 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 86 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 87 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 88 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 89 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 90 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 91 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 92 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 93 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 94 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 95 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 96 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 97 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 98 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 99 of 100."</span></span>
+<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 100 of 100."</span></span>
 <span></span>
 <span><span class="va">refAndTestSimulationsInVirtualPopulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulateVirtualPopulation.html">simulateVirtualPopulation</a></span><span class="op">(</span></span>
 <span>  referenceSimulationFilePath <span class="op">=</span> <span class="va">referenceSimulationFilePath</span>,</span>
@@ -519,10 +621,18 @@ with the corresponding observations.</p>
 <span>  startTime <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  endTime <span class="op">=</span> <span class="fl">5760</span>, <span class="co">#min</span></span>
 <span>  resolutionPtsMin <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">15</span> <span class="co"># pts/min</span></span>
-<span>  <span class="op">)</span>  </span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<span>  <span class="op">)</span>  </span>
+<span><span class="co">#&gt; [1] "Simulating virtual population."</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"plotting_script.R"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="bupropion-oral_files/figure-html/unnamed-chunk-7-1.png" width="700"><img src="bupropion-oral_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
+<pre><code><span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre>
+<p><img src="bupropion-oral_files/figure-html/unnamed-chunk-7-3.png" width="700"></p>
 </div>
 </div>
 <div class="section level2">
@@ -566,19 +676,32 @@ zero under both trial designs.</p>
 <h3 id="openvbe-code-4">openVBE code<a class="anchor" aria-label="anchor" href="#openvbe-code-4"></a>
 </h3>
 <p>Runs the clinical trial simulations</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ctsResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runClinicalTrialSimulation.html">runClinicalTrialSimulation</a></span><span class="op">(</span></span>
 <span>  virtualPopulationSimulationResults <span class="op">=</span> <span class="va">refAndTestSimulationsInVirtualPopulation</span>,</span>
 <span>  n_trials <span class="op">=</span> <span class="fl">500</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Running clinical trial simulation."</span></span></code></pre></div>
 <p>Clinical trial simulation results as virtual bioequivalence bands</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bandsPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotVBEBands.html">plotVBEBands</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
-<span><span class="fu">show</span><span class="op">(</span><span class="va">bandsPlot</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">show</span><span class="op">(</span><span class="va">bandsPlot</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $auc_par_all</span></span></code></pre></div>
+<p><img src="bupropion-oral_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<pre><code><span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $auc_cross_all</span></span></code></pre>
+<p><img src="bupropion-oral_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
+<pre><code><span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $cmax_par_all</span></span></code></pre>
+<p><img src="bupropion-oral_files/figure-html/unnamed-chunk-9-3.png" width="700"></p>
+<pre><code><span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $cmax_cross_all</span></span></code></pre>
+<p><img src="bupropion-oral_files/figure-html/unnamed-chunk-9-4.png" width="700"></p>
 <p>Probability of virtual bioequivalence</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">probabilityPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotVBEProbability.html">plotVBEProbability</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
 <span><span class="fu">show</span><span class="op">(</span><span class="va">probabilityPlot</span><span class="op">)</span></span></code></pre></div>
+<p><img src="bupropion-oral_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>
 </div>
   </div>
