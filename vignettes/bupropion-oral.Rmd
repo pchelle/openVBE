@@ -156,7 +156,7 @@ Figure 6F shows a post-hoc external validation of the two-cluster Gaussian mixtu
 
 ### openVBE code
 
-```r
+```{r}
 demographyRanges <- list(
   weight = list(range = c(50, 110), units = "kg"),
   height = list(range = c(16,20), units = "dm")
@@ -164,11 +164,8 @@ demographyRanges <- list(
 
 clusters <- getClusters(
   inferredDistribution = inferredDistribution,
-  numberOfClusters = 2
+  numberOfClusters = 1
   )
-# [1] "Building cluster model based on NPOD results."
-# Error in posteriorProbabilities[ind, thetaIndex] : 
-#  subscript out of bounds
 
 virtualPopulation <- createVirtualPopulation(
   inferredDistribution = inferredDistribution,
@@ -191,7 +188,7 @@ refAndTestSimulationsInVirtualPopulation <- simulateVirtualPopulation(
 
 ```
 
-```r
+```{r}
 library(ggplot2)
 source(file.path(subfolder,"plotting_script.R"))
 ```
@@ -208,7 +205,7 @@ In contrast, at large trial study sizes, the Cmax GMR confidence bands fell outs
 
 Runs the clinical trial simulations
 
-```r
+```{r}
 ctsResults <- runClinicalTrialSimulation(
   virtualPopulationSimulationResults = refAndTestSimulationsInVirtualPopulation,
   n_trials = 500
@@ -217,14 +214,14 @@ ctsResults <- runClinicalTrialSimulation(
 
 Clinical trial simulation results as virtual bioequivalence bands
 
-```r
+```{r}
 bandsPlot <- plotVBEBands(ctsResults)
 show(bandsPlot)
 ```
 
 Probability of virtual bioequivalence
 
-```r
+```{r}
 probabilityPlot <- plotVBEProbability(ctsResults)
 show(probabilityPlot)
 ```
