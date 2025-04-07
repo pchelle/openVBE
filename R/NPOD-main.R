@@ -240,8 +240,8 @@ NPODObject <- R6::R6Class(
       objective_function_values[counter + 1] <- F1
       
       cli::cli_h2("Optimization")
-      cli::cli_alert_info("Run {counter}:")
       while (abs(objective_function_values[counter + 1] - objective_function_values[counter]) > self$npodRunSettings$theta_F) {
+        cli::cli_alert_info("Run {counter}:")
         cli::cli_alert("theta:")
         print(old_theta)
         cli::cli_alert("lambda: {lam}")
