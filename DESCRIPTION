@@ -41,7 +41,8 @@ Imports:
     R6,
     lme4,
     lmerTest,
-    Matrix
+    Matrix,
+    cli
 Depends:
   ospsuite,
   mclust

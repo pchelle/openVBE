@@ -238,28 +238,27 @@ NPODObject <- R6::R6Class(
       objective_function_values <- c() # Initialize a vector to store the objective function values at each iteration
       objective_function_values[counter] <- F0
       objective_function_values[counter + 1] <- F1
-
+      
+      cli::cli_h2("Optimization")
+      cli::cli_alert_info("Run {counter}:")
       while (abs(objective_function_values[counter + 1] - objective_function_values[counter]) > self$npodRunSettings$theta_F) {
-        print("Starting optimization run:")
-        print("theta:")
+        cli::cli_alert("theta:")
         print(old_theta)
-        print("lambda:")
-        print(lam)
+        cli::cli_alert("lambda: {lam}")
         IPM_results_old_theta <- IPM(P1)
         lam <- IPM_results_old_theta$lambda # Dual variable obtained from IPM optimization with theta = old_theta
 
         # CONDENSE - remove low probability support points
+        cli::cli_h3("Condense - removing low probability support points")
         L1 <- 0.00000001
         L2 <- max(lam) / 1000
         ind1 <- (lam > L1) & (lam > L2) # Find elements of lambda that are greater than the lower bounds L1 and L2
         lam <- lam[ind1]
         inb_theta <- old_theta[, ind1, drop = FALSE] # Select the columns of theta corresponding to values of lambda that fall within the constraints L_lower and L_upper
-        print("After Condense 2")
-        print("theta:")
+        cli::cli_alert("theta:")
         print(inb_theta)
-        print("lambda:")
-        print(lam)
-
+        cli::cli_alert("lambda: {lam}")
+        
         # Calculate the matrix of log likelihoods P2 for the set of support points inb_theta
         P2 <- self$getPSI(theta = inb_theta, optimizeSigma = TRUE, lambda = lam)
 
@@ -268,40 +267,36 @@ NPODObject <- R6::R6Class(
         objective_function_values[counter + 2] <- IPM_results_inb_theta$fobj # Add new objective value to objective_function_values
 
         # CONDENSE - remove low probability support points
+        cli::cli_h3("Condense - removing low probability support points")
         L3 <- max(lam) / 1000
         ind2 <- lam > L3 # Find elements of lambda that are greater than the lower bound L3
         lam <- lam[ind2]
         new_weights <- lam / sum(lam)
         new_theta <- inb_theta[, ind2, drop = FALSE]
-        print("After Condense 2")
-        print("theta:")
+        cli::cli_alert("theta:")
         print(new_theta)
-        print("lambda:")
-        print(lam)
+        cli::cli_alert("lambda: {lam}")
 
         if (abs(objective_function_values[counter + 2] - objective_function_values[counter + 1]) <= self$npodRunSettings$theta_F) {
-          print("Stopping: Absolute change in objective function is smaller than theta_F.")
+          cli::cli_alert_success("{.strong Stopping}: Absolute change in objective function is smaller than {.strong theta_F} ({self$npodRunSettings$theta_F})")
+          cli::cli_alert_info("theta:")
           print(new_theta)
           break
         }
 
         if (counter >= self$npodRunSettings$ncycles) {
-          print("Stopping: Maximum number of cycles reached.")
+          cli::cli_alert_warning("{.strong Stopping}: Maximum number of cycles reached ({counter})")
+          cli::cli_alert_info("theta:")
           print(new_theta)
           break
         }
 
         K <- length(new_theta[1, ])
-
         self$pyl <- P2[, ind2, drop = FALSE] %*% new_weights
-
-        print("Starting fminsearch and prune")
+        cli::cli_h3("fminsearch and prune")
         for (l in 1:K) {
-          print("Starting fminsearch...")
-
-          print(l)
-          print(new_theta)
-
+          cli::cli_alert_info("Step {l}/{K}:")
+          cli::cli_process_start("fminsearch")
           cand_theta <- tryCatch(
             {
               neldermead::fminsearch(self$multi_D, new_theta[, l], options)
@@ -310,18 +305,15 @@ NPODObject <- R6::R6Class(
               NULL
             }
           )
-
-          print("fminserarch complete")
-          print("prune...")
+          cli::cli_process_done()
+          cli::cli_process_start("prune")
           new_theta <- self$prune(theta = new_theta, theta_plus = cand_theta$optbase$xopt)
-          print("...complete.")
+          cli::cli_process_done()
+          cli::cli_alert_info("theta:")
           print(new_theta)
         }
-        print("Completed fminsearch and prune")
         old_theta <- new_theta
         counter <- counter + 1
-        print("Counter: ")
-        print(counter)
         # Calculate the matrix of log likelihoods P1 for the set of support points old_theta
         P1 <- self$getPSI(theta = old_theta)
       }
@@ -375,17 +367,17 @@ NPODObject <- R6::R6Class(
       within_bounds <- all(theta_plus_scaled > a & theta_plus_scaled < b)
       # Add theta_plus_scaled if conditions are met
       if (min_dist > self$npodRunSettings$theta_d && within_bounds) {
-        print(paste0("Adding new support point: (", paste(theta_plus, collapse = ", "), ")"))
+        cli::cli_alert_success("Adding new support point: ({theta_plus})")
         theta <- cbind(theta, theta_plus)
         return(theta)
       }
 
       # Otherwise reject candidate support point and provide reason.
-      print(paste0("Rejecting candidate support point: (", paste(theta_plus, collapse = ", "), ")."))
+      cli::cli_alert_danger("Rejecting candidate support point: ({theta_plus})")
       if (!within_bounds) {
-        print("Reason: Outside of bounds.")
+        cli::cli_alert("{.strong Reason}: Outside of bounds.")
       } else {
-        print("Reason: too close to existing support point.")
+        cli::cli_alert("{.strong Reason}: Too close to existing support point.")
       }
       return(theta)
     },
