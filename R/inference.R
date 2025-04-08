@@ -51,8 +51,8 @@ runDistributionInferenceNPOD <- function(referenceSimulationFilePath,
                                          saveResultsPath,
                                          cacheFolder,
                                          ...) {
-  print("Starting NPOD")
-
+  cli::cli_h1("Non-Parametric Optimal Design (NPOD)")
+  
   individualCharacteristics <- NULL
   cofactorUnits <- NULL
   if (!is.null(studyPopulationDataFilePath)) {

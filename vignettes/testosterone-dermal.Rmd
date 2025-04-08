@@ -1,5 +1,7 @@
 ---
 title: "Testosterone Dermal"
+resource_files:
+  - figures
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Testosterone Dermal}

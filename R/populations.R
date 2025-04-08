@@ -66,13 +66,11 @@ unifyPopulationDataUnits <- function(demographicData) {
 }
 
 getClusteringNPOD <- function(inferredDistribution, parameterNames, cofactorNames, numberOfClusters) {
-  print("Building cluster model based on NPOD results.")
-
+  cli::cli_progress_step("Building cluster model based on NPOD results.")
   weighted_points <- getWeightedPoints(
     res = inferredDistribution,
     params = cofactorNames
   )
-
   sampledPoints <- weighted_points$points[sample(1:length(weighted_points$weights),
     size = 100,
     replace = TRUE,
@@ -81,6 +79,7 @@ getClusteringNPOD <- function(inferredDistribution, parameterNames, cofactorName
   mclustBIC <- mclust::mclustBIC
   clusters <- mclust::Mclust(data = sampledPoints, G = numberOfClusters)
   plot(clusters, what = "classification")
+  cli::cli_progress_done()
   return(clusters)
 }
 
@@ -123,8 +122,9 @@ createVirtualPopulation <- function(inferredDistribution,
                                     numberOfVirtualIndividuals = 100,
                                     clusters,
                                     demographyRanges) {
-  print("Creating virtual population characteristics.")
   # create virtual population
+  cli::cli_h1("Virtual Population")
+  cli::cli_progress_step("Create virtual population characteristics")
 
   if ("cofactorPaths" %in% names(inferredDistribution)) {
     populationDataframe <- data.frame(IndividualId = seq(0, (numberOfVirtualIndividuals - 1))) # data.frame(matrix(ncol = 0, nrow = numberOfVirtualIndividuals))
@@ -174,8 +174,7 @@ createVirtualPopulation <- function(inferredDistribution,
       BMIMax = BMIRange[2],
       BMIUnit = BMIUnits %||% ospsuite::ospUnits$BMI$`kg/m²`
     )
-
-    print("Creating virtual population.")
+    
     virtualPopn <- createPopulation(populationCharacteristics = virtualPopnChars)
     populationDataframe <- populationToDataFrame(population = virtualPopn$population)
     cofactorPathDictionary <- individualParameterPaths
@@ -197,9 +196,13 @@ createVirtualPopulation <- function(inferredDistribution,
   cofactorNames <- intersect(allCofactorNames, names(inferredDistribution$demographicData))
 
   # find theta values of closest individual in reference population
+  i <- 1
+  cli::cli_progress_step(
+    "Sampling from conditional distribution: individual {i}/{numberOfVirtualIndividuals}", 
+    spinner = TRUE
+  )
   for (i in 1:numberOfVirtualIndividuals) {
     # read in ith person's weight and height
-
     cofactorValues <- sapply(cofactorNames, function(cof) {
       dimension <- cofactorDimensions[[cof]]
       ospsuite::toUnit(
@@ -213,7 +216,6 @@ createVirtualPopulation <- function(inferredDistribution,
     givenPoints <- c(rep(NA, length(parameterList)), cofactorValues)
 
     # Sample from conditional distribution and ensure that sample is within parameter bounds
-    print(paste0("Sampling from conditional distribution for individual ", i, " of ", numberOfVirtualIndividuals, "."))
     thetaSamples <- samplesFromMixture(
       mclstResults = clusters,
       givenPoints = givenPoints,
@@ -225,13 +227,14 @@ createVirtualPopulation <- function(inferredDistribution,
         x$upperBound
       })
     )
-
-
+    cli::cli_progress_update()
+    
     for (j in seq_along(parameterList)) {
       referencePopulationDataframe[[referenceSimulationParameterPaths[j]]][i] <- thetaSamples[, j]
       testPopulationDataframe[[testSimulationParameterPaths[j]]][i] <- thetaSamples[, j]
     }
   }
+  cli::cli_progress_done()
 
   return(list(referencePopulationDataframe = referencePopulationDataframe, testPopulationDataframe = testPopulationDataframe))
 }
@@ -265,33 +268,39 @@ simulateVirtualPopulation <- function(referenceSimulationFilePath,
   file.remove("referenceVirtualPopulation.csv")
   file.remove("testVirtualPopulation.csv")
 
-  print("Simulating virtual population.")
+  cli::cli_progress_step("Simulating virtual population", spinner = TRUE)
   referenceSimulation <- ospsuite::loadSimulation(referenceSimulationFilePath)
   referenceSimulation$outputSelections$clear()
   ospsuite::addOutputs(quantitiesOrPaths = outputPath, simulation = referenceSimulation)
+  cli::cli_progress_update()
 
   testSimulation <- ospsuite::loadSimulation(testSimulationFilePath)
   testSimulation$outputSelections$clear()
   ospsuite::addOutputs(quantitiesOrPaths = outputPath, simulation = testSimulation)
-
+  cli::cli_progress_update()
 
   # set output interval
   ospsuite::setOutputInterval(simulation = referenceSimulation, startTime = startTime, endTime = endTime, resolution = resolutionPtsMin)
   ospsuite::setOutputInterval(simulation = testSimulation, startTime = startTime, endTime = endTime, resolution = resolutionPtsMin)
+  cli::cli_progress_update()
 
   # generate plasma concentration time profiles
   referenceSimulationResults <- ospsuite::runSimulation(simulation = referenceSimulation, population = referenceVirtualPopulation)
   testSimulationResults <- ospsuite::runSimulation(simulation = testSimulation, population = testVirtualPopulation)
+  cli::cli_progress_update()
 
   referenceResultsData <- ospsuite::getOutputValues(referenceSimulationResults, quantitiesOrPaths = outputPath)$data
   referenceResultsData$drug <- "R"
   referenceResultsData$period <- 1
+  cli::cli_progress_update()
 
   testResultsData <- ospsuite::getOutputValues(testSimulationResults, quantitiesOrPaths = outputPath)$data
   testResultsData$drug <- "T1"
   testResultsData$period <- 1
+  cli::cli_progress_update()
 
   combinedResultsData <- rbind(referenceResultsData, testResultsData)
+  cli::cli_progress_done()
 
   resultsData <- data.frame(
     id = 1 + combinedResultsData[["IndividualId"]],
@@ -321,9 +330,11 @@ runClinicalTrialSimulation <- function(virtualPopulationSimulationResults,
                                        subj_min = 5,
                                        subj_max = 50,
                                        subj_step = 5) {
-  print("Running clinical trial simulation.")
+  cli::cli_progress_step("Running clinical trial simulation", spinner = TRUE)
   res <- calc_be(virtualPopulationSimulationResults, n_trials = n_trials, subj_min = subj_min, subj_max = subj_max, subj_step = subj_step)
+  cli::cli_progress_update()
   extRes <- extract_be(res)
+  cli::cli_progress_done()
   # make_report(sim=virtualPopulationSimulationResults,
   #             be=extRes)
   return(extRes)

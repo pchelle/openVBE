@@ -7,3 +7,4 @@ vignettes/cacheFolder/*.rds
 cacheFolder/*.rds
 inst/doc 
 *npod-results*.rds
+inst/doc
