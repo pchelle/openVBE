@@ -39,6 +39,9 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
+  <a href="../articles/openVBE.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -283,9 +286,13 @@ parameters and cofactors.</p>
 <span>  saveResultsPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">exampleName</span>,<span class="st">"-npod-results-"</span>,<span class="va">dateTime</span>,<span class="st">".rds"</span><span class="op">)</span>,</span>
 <span>  cacheFolder <span class="op">=</span> <span class="st">"cacheFolder"</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Starting NPOD"</span></span>
-<span><span class="co">#&gt; [1] "Starting optimization run:"</span></span>
-<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Non-Parametric Optimal Design (NPOD)</span> <span style="color: #00BBBB;">────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── <span style="font-weight: bold;">Optimization</span> ──</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Run 1:</span></span>
+<span><span class="co">#&gt; → theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2] [,3]   [,4]  [,5]   [,6]  [,7]    [,8]   [,9]   [,10]  [,11]</span></span>
 <span><span class="co">#&gt; [1,]    0 -0.50 0.50 -0.750 0.250 -0.250 0.750 -0.8750 0.1250 -0.3750 0.6250</span></span>
 <span><span class="co">#&gt; [2,]    1  1.25 0.75  1.125 0.625  0.875 1.375  1.4375 0.9375  0.6875 1.1875</span></span>
@@ -301,283 +308,242 @@ parameters and cofactors.</p>
 <span><span class="co">#&gt;         [,37]     [,38]    [,39]     [,40]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250 -0.218750 0.781250 -0.843750</span></span>
 <span><span class="co">#&gt; [2,] 1.421875  1.171875 0.671875  0.734375</span></span>
-<span><span class="co">#&gt; [1] "lambda:"</span></span>
-<span><span class="co">#&gt;  [1] 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025</span></span>
-<span><span class="co">#&gt; [13] 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025</span></span>
-<span><span class="co">#&gt; [25] 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025 0.025</span></span>
-<span><span class="co">#&gt; [37] 0.025 0.025 0.025 0.025</span></span>
-<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
-<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt; → lambda: 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, 0.025, …, 0.025, and 0.025</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Condense - removing low probability support points</span></span>
+<span><span class="co">#&gt; → theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "lambda:"</span></span>
-<span><span class="co">#&gt;  [1] 0.002411838 0.001413493 0.952626201 0.001155724 0.008029559 0.002474677</span></span>
-<span><span class="co">#&gt;  [7] 0.015833738 0.001166835 0.006807033 0.006724929</span></span>
-<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
-<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt; → lambda: 0.0024118380881621, 0.00141349346025984, 0.95262620093651, 0.00115572376653814, 0.00802955888125817, 0.00247467677348672, 0.0158337381655144, 0.00116683514699218, 0.00680703314717356, and 0.00672492875690462</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Condense - removing low probability support points</span></span>
+<span><span class="co">#&gt; → theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "lambda:"</span></span>
-<span><span class="co">#&gt;  [1] 0.002791402 0.001978164 0.956164132 0.001747391 0.006934266 0.002839938</span></span>
-<span><span class="co">#&gt;  [7] 0.013811496 0.001757617 0.006018121 0.005957472</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch and prune"</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 1</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
+<span><span class="co">#&gt; → lambda: 0.00279140172196618, 0.00197816412240348, 0.956164132229447, 0.00174739137710459, 0.0069342659681119, 0.00283993807884638, 0.0138114959079314, 0.00175761723832848, 0.00601812141374296, and 0.00595747194211713</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── fminsearch and prune</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 1/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
 <span><span class="co">#&gt; fminsearch:  Exiting: Maximum number of iterations has been exceeded</span></span>
 <span><span class="co">#&gt;          - increase MaxIter option.</span></span>
 <span><span class="co">#&gt;          Current function value: -0.00103867975222016</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "Rejecting candidate support point: (-1.41697265625, 8.86083984375002)."</span></span>
-<span><span class="co">#&gt; [1] "Reason: Outside of bounds."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Rejecting candidate support point: (-1.41697265625 and 8.86083984375002)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune→ <span style="font-weight: bold;">Reason</span>: Outside of bounds.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune<span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 2</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 2/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
 <span><span class="co">#&gt; fminsearch:  Exiting: Maximum number of iterations has been exceeded</span></span>
 <span><span class="co">#&gt;          - increase MaxIter option.</span></span>
 <span><span class="co">#&gt;          Current function value: -0.000387362115009893</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "Rejecting candidate support point: (2.21520996093751, -5.279052734375)."</span></span>
-<span><span class="co">#&gt; [1] "Reason: Outside of bounds."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Rejecting candidate support point: (2.21520996093751 and -5.279052734375)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune→ <span style="font-weight: bold;">Reason</span>: Outside of bounds.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune<span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 3</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 3/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
 <span><span class="co">#&gt; fminsearch:  Exiting: Maximum number of iterations has been exceeded</span></span>
 <span><span class="co">#&gt;          - increase MaxIter option.</span></span>
 <span><span class="co">#&gt;          Current function value: -0.000260332171183819</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "Rejecting candidate support point: (0.675634765624995, -5.3642578125)."</span></span>
-<span><span class="co">#&gt; [1] "Reason: Outside of bounds."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Rejecting candidate support point: (0.675634765624995 and -5.3642578125)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune→ <span style="font-weight: bold;">Reason</span>: Outside of bounds.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune<span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 4</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 4/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
+<span><span class="co">#&gt; Timing stopped at: 5.573 0.017 2.135</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; Timing stopped at: 5.351 0.018 2.058</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 5</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 5/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
 <span><span class="co">#&gt; fminsearch:  Exiting: Maximum number of iterations has been exceeded</span></span>
 <span><span class="co">#&gt;          - increase MaxIter option.</span></span>
 <span><span class="co">#&gt;          Current function value: -0.000110825722817509</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "Rejecting candidate support point: (0.164727783203125, -4.48719482421876)."</span></span>
-<span><span class="co">#&gt; [1] "Reason: Outside of bounds."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Rejecting candidate support point: (0.164727783203125 and -4.48719482421876)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune→ <span style="font-weight: bold;">Reason</span>: Outside of bounds.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune<span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 6</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 6/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
+<span><span class="co">#&gt; Timing stopped at: 5.528 0.011 2.121</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; Timing stopped at: 5.405 0.018 2.063</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 7</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 7/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
 <span><span class="co">#&gt; fminsearch:  Exiting: Maximum number of iterations has been exceeded</span></span>
 <span><span class="co">#&gt;          - increase MaxIter option.</span></span>
 <span><span class="co">#&gt;          Current function value: -0.00138521539658498</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "Rejecting candidate support point: (-1.5837158203125, 13.0143585205077)."</span></span>
-<span><span class="co">#&gt; [1] "Reason: Outside of bounds."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Rejecting candidate support point: (-1.5837158203125 and 13.0143585205077)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune→ <span style="font-weight: bold;">Reason</span>: Outside of bounds.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune<span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 8</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 8/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
 <span><span class="co">#&gt; fminsearch:  Exiting: Maximum number of iterations has been exceeded</span></span>
 <span><span class="co">#&gt;          - increase MaxIter option.</span></span>
 <span><span class="co">#&gt;          Current function value: -4.23928240422811e-05</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "Rejecting candidate support point: (-0.553802490234376, 1.56491394042969)."</span></span>
-<span><span class="co">#&gt; [1] "Reason: Outside of bounds."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Rejecting candidate support point: (-0.553802490234376 and 1.56491394042969)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune→ <span style="font-weight: bold;">Reason</span>: Outside of bounds.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune<span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 9</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 9/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
 <span><span class="co">#&gt; fminsearch:  Exiting: Maximum number of iterations has been exceeded</span></span>
 <span><span class="co">#&gt;          - increase MaxIter option.</span></span>
 <span><span class="co">#&gt;          Current function value: -9.78589575630906e-05</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "Rejecting candidate support point: (-0.263952636718751, 7.06098175048828)."</span></span>
-<span><span class="co">#&gt; [1] "Reason: Outside of bounds."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Rejecting candidate support point: (-0.263952636718751 and 7.06098175048828)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune→ <span style="font-weight: bold;">Reason</span>: Outside of bounds.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune<span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Starting fminsearch..."</span></span>
-<span><span class="co">#&gt; [1] 10</span></span>
-<span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
-<span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
-<span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
-<span><span class="co">#&gt;         [,10]</span></span>
-<span><span class="co">#&gt; [1,] 0.281250</span></span>
-<span><span class="co">#&gt; [2,] 1.421875</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Step 10/10:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> fminsearch</span></span>
 <span><span class="co">#&gt; fminsearch:  Exiting: Maximum number of iterations has been exceeded</span></span>
 <span><span class="co">#&gt;          - increase MaxIter option.</span></span>
 <span><span class="co">#&gt;          Current function value: -0.000374028428197448</span></span>
-<span><span class="co">#&gt; [1] "fminserarch complete"</span></span>
-<span><span class="co">#&gt; [1] "prune..."</span></span>
-<span><span class="co">#&gt; [1] "Rejecting candidate support point: (1.8279052734375, -5.22289123535154)."</span></span>
-<span><span class="co">#&gt; [1] "Reason: Outside of bounds."</span></span>
-<span><span class="co">#&gt; [1] "...complete."</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> fminsearch ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> Rejecting candidate support point: (1.8279052734375 and -5.22289123535154)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune→ <span style="font-weight: bold;">Reason</span>: Outside of bounds.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> prune<span style="color: #00BB00;">✔</span> prune ... done</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "Completed fminsearch and prune"</span></span>
-<span><span class="co">#&gt; [1] "Counter: "</span></span>
-<span><span class="co">#&gt; [1] 2</span></span>
-<span><span class="co">#&gt; [1] "Starting optimization run:"</span></span>
-<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Run 2:</span></span>
+<span><span class="co">#&gt; → theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "lambda:"</span></span>
-<span><span class="co">#&gt;  [1] 0.002791402 0.001978164 0.956164132 0.001747391 0.006934266 0.002839938</span></span>
-<span><span class="co">#&gt;  [7] 0.013811496 0.001757617 0.006018121 0.005957472</span></span>
-<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
-<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt; → lambda: 0.00279140172196618, 0.00197816412240348, 0.956164132229447, 0.00174739137710459, 0.0069342659681119, 0.00283993807884638, 0.0138114959079314, 0.00175761723832848, 0.00601812141374296, and 0.00595747194211713</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Condense - removing low probability support points </span></span>
+<span><span class="co">#&gt; → theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "lambda:"</span></span>
-<span><span class="co">#&gt;  [1] 0.002791402 0.001978164 0.956164132 0.001747391 0.006934266 0.002839938</span></span>
-<span><span class="co">#&gt;  [7] 0.013811496 0.001757617 0.006018121 0.005957472</span></span>
-<span><span class="co">#&gt; [1] "After Condense 2"</span></span>
-<span><span class="co">#&gt; [1] "theta:"</span></span>
+<span><span class="co">#&gt; → lambda: 0.00279140172196618, 0.00197816412240348, 0.956164132229447, 0.00174739137710459, 0.0069342659681119, 0.00283993807884638, 0.0138114959079314, 0.00175761723832848, 0.00601812141374296, and 0.00595747194211713</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Condense - removing low probability support points </span></span>
+<span><span class="co">#&gt; → theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
 <span><span class="co">#&gt;         [,10]</span></span>
 <span><span class="co">#&gt; [1,] 0.281250</span></span>
 <span><span class="co">#&gt; [2,] 1.421875</span></span>
-<span><span class="co">#&gt; [1] "lambda:"</span></span>
-<span><span class="co">#&gt;  [1] 0.002791402 0.001978164 0.956164132 0.001747391 0.006934266 0.002839938</span></span>
-<span><span class="co">#&gt;  [7] 0.013811496 0.001757617 0.006018121 0.005957472</span></span>
-<span><span class="co">#&gt; [1] "Stopping: Absolute change in objective function is smaller than theta_F."</span></span>
+<span><span class="co">#&gt; → lambda: 0.00279140172196618, 0.00197816412240348, 0.956164132229447, 0.00174739137710459, 0.0069342659681119, 0.00283993807884638, 0.0138114959079314, 0.00175761723832848, 0.00601812141374296, and 0.00595747194211713</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="font-weight: bold;">Stopping</span>: Absolute change in objective function is smaller than <span style="font-weight: bold;">theta_F</span> (0.1)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> theta:</span></span>
 <span><span class="co">#&gt;      [,1]  [,2]   [,3]   [,4]    [,5]    [,6]    [,7]     [,8]     [,9]</span></span>
 <span><span class="co">#&gt; [1,]    0 0.250 0.1250 0.3750 0.06250 0.31250 0.18750 -0.06250 0.031250</span></span>
 <span><span class="co">#&gt; [2,]    1 0.625 0.9375 1.3125 0.53125 1.15625 1.46875  0.59375 0.796875</span></span>
@@ -673,109 +639,17 @@ to create a virtual population:</p>
 <span>    <span class="op">)</span>,</span>
 <span>  demographyRanges <span class="op">=</span> <span class="va">demographyRanges</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Creating virtual population characteristics."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 1 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Building cluster model based on NPOD results."</span></span></code></pre></div>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Virtual Population</span> <span style="color: #00BBBB;">──────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Create virtual population characteristics</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Create virtual population characteristics <span style="color: #B2B2B2;">[9ms]</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠙ Sampling from conditional distribution: individual 1/100</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Building cluster model based on NPOD results.</span></span></code></pre></div>
 <p><img src="testosterone-dermal_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 2 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 3 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 4 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 5 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 6 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 7 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 8 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 9 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 10 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 11 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 12 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 13 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 14 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 15 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 16 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 17 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 18 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 19 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 20 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 21 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 22 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 23 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 24 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 25 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 26 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 27 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 28 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 29 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 30 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 31 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 32 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 33 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 34 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 35 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 36 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 37 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 38 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 39 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 40 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 41 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 42 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 43 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 44 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 45 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 46 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 47 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 48 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 49 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 50 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 51 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 52 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 53 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 54 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 55 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 56 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 57 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 58 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 59 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 60 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 61 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 62 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 63 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 64 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 65 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 66 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 67 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 68 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 69 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 70 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 71 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 72 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 73 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 74 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 75 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 76 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 77 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 78 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 79 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 80 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 81 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 82 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 83 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 84 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 85 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 86 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 87 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 88 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 89 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 90 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 91 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 92 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 93 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 94 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 95 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 96 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 97 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 98 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 99 of 100."</span></span>
-<span><span class="co">#&gt; [1] "Sampling from conditional distribution for individual 100 of 100."</span></span>
+<pre><code><span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Building cluster model based on NPOD results. <span style="color: #B2B2B2;">[99ms]</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ⠙ Sampling from conditional distribution: individual 1/100<span style="color: #00BB00;">✔</span> Sampling from conditional distribution: individual 100/100 <span style="color: #B2B2B2;">[382ms]</span></span></span>
 <span></span>
 <span><span class="va">refAndTestSimulationsInVirtualPopulation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulateVirtualPopulation.html">simulateVirtualPopulation</a></span><span class="op">(</span></span>
 <span>  referenceSimulationFilePath <span class="op">=</span> <span class="va">referenceSimulationFilePath</span>,</span>
@@ -787,16 +661,13 @@ to create a virtual population:</p>
 <span>  endTime <span class="op">=</span> <span class="fl">6000</span>, <span class="co"># min</span></span>
 <span>  resolutionPtsMin <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">15</span> <span class="co"># pts/min</span></span>
 <span>  <span class="op">)</span>  </span>
-<span><span class="co">#&gt; [1] "Simulating virtual population."</span></span></code></pre>
+<span><span class="co">#&gt; ⠙ Simulating virtual population</span></span>
+<span><span class="co">#&gt; ⠹ Simulating virtual population</span></span>
+<span><span class="co">#&gt; ⠸ Simulating virtual population</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Simulating virtual population <span style="color: #B2B2B2;">[16.2s]</span></span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">subfolder</span>,<span class="st">"plotting_script.R"</span><span class="op">)</span>, encoding <span class="op">=</span> <span class="st">'UTF-8'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="testosterone-dermal_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre>
-<p><img src="testosterone-dermal_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
+<p><img src="testosterone-dermal_files/figure-html/unnamed-chunk-7-1.png" width="700"><img src="testosterone-dermal_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
 </div>
 </div>
 <div class="section level2">
@@ -828,12 +699,15 @@ small (&lt;0.05) in terms of both the AUC and Cmax.</p>
 <div class="section level3">
 <h3 id="openvbe-code-4">openVBE code<a class="anchor" aria-label="anchor" href="#openvbe-code-4"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ctsResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runClinicalTrialSimulation.html">runClinicalTrialSimulation</a></span><span class="op">(</span></span>
 <span>  virtualPopulationSimulationResults <span class="op">=</span> <span class="va">refAndTestSimulationsInVirtualPopulation</span>,</span>
 <span>  n_trials <span class="op">=</span> <span class="fl">1000</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Running clinical trial simulation."</span></span>
+<span><span class="co">#&gt; ⠙ Running clinical trial simulation</span></span>
+<span><span class="co">#&gt; ⠹ Running clinical trial simulation</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Running clinical trial simulation <span style="color: #B2B2B2;">[4m 56.7s]</span></span></span>
+<span><span class="co">#&gt; </span></span>
 <span></span>
 <span><span class="va">bandsPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotVBEBands.html">plotVBEBands</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
 <span><span class="fu">show</span><span class="op">(</span><span class="va">bandsPlot</span><span class="op">)</span></span>
@@ -848,7 +722,7 @@ small (&lt;0.05) in terms of both the AUC and Cmax.</p>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $cmax_cross_all</span></span></code></pre>
 <p><img src="testosterone-dermal_files/figure-html/unnamed-chunk-8-4.png" width="700"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">probabilityPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotVBEProbability.html">plotVBEProbability</a></span><span class="op">(</span><span class="va">ctsResults</span><span class="op">)</span></span>
 <span><span class="fu">show</span><span class="op">(</span><span class="va">probabilityPlot</span><span class="op">)</span></span></code></pre></div>
@@ -872,7 +746,7 @@ small (&lt;0.05) in terms of both the AUC and Cmax.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
       </footer>
